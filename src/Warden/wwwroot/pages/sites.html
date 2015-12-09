@@ -1,0 +1,22 @@
+﻿<div>
+    <h1>Site List</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="site in siteQueryController.sites">               
+                <td>{{site.Name}}</td>
+                <td>{{site.Address}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <a href="/sites/add" class="btn btn-primary">Add New Site</a>
+    </p>
+    <p>Test = {{siteQueryController.test}}</p>
+    <p>function = {{siteQueryController.getData()}}</p>
+</div>
