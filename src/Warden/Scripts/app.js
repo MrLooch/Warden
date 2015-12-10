@@ -2,7 +2,7 @@
     'use strict';
 
     config.$inject = ['$routeProvider', '$locationProvider'];
-    angular.module('wardenapp', ['ngRoute', 'siteService']).config(config);
+    angular.module('wardenapp', ['ngRoute','siteServiceModule']).config(config);
 
     function config($routeProvider, $locationProvider) {        
         $routeProvider.when('/', {
@@ -14,7 +14,7 @@
                        .when('/contact', {
                            templateUrl: '/pages/contact.html'
                        })
-                      .when('/viewsites', {
+                      .when('/sites', {
                           templateUrl: '/pages/sites.html',
                           controller: 'SiteQueryController',
                           controllerAs : 'siteQueryController'

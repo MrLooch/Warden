@@ -2,17 +2,15 @@
     'use strict';
    
     angular
-        .module('siteService', ['ngResource'])
-        .factory('SiteQueryService', SiteQueryService);
+       .module('siteServiceModule', ['ngResource'])
+       .factory('Site', Site);
 
-    SiteQueryService.$inject = ['$resource'];
+    Site.$inject = ['$resource'];
 
-    function SiteQueryService($resource) {
+    function Site($resource) {
 
-        //this.query = function ()
-       // {
-            return $resource('/api/sites/');
-        //}
+        var urlBase = '/api/sites/:id';
+        return $resource(urlBase, { Id: "@Id" }, { "update": { method: "PUT" } });
     }
 
 })();

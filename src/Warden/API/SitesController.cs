@@ -11,16 +11,27 @@ namespace Warden.API
     [Route("api/[controller]")]
     public class SitesController : Controller
     {
+        private List<Site> sites; 
+        public SitesController()
+        {
+            this.sites = new List<Site>()
+            {
+                 new Site() { Address = "615 Dandenon Road Armadale 3143 VIC", Name = "Jeppesen" },
+                    new Site() { Address = "101 Collin Street Melbourne 3000 VIC", Name = "Telstra" },
+                    new Site() { Address = "Hawkers Fishermens Bend 3001 VIC", Name = "Boeing" }
+            };
+        }
         // GET: api/values
         [HttpGet]
         public IEnumerable<Site> Get()
         {
-            return new List<Site>
-            {
-                new Site() { Address = "615 Dandenon Road Armadale 3143 VIC", Name = "Jeppesen" },
-                new Site() { Address = "101 Collin Street Melbourne 3000 VIC", Name = "Telstra" },
-                new Site() { Address = "Hawkers Fishermens Bend 3001 VIC", Name = "Boeing" }
-            };
+            return sites;
+        }
+        [HttpPost]
+        public IActionResult Post([FromBody]Site site)
+        {
+            sites.Add(site);
+            return new ObjectResult(site);
         }
 
         // GET api/values/5

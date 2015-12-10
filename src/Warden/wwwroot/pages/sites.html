@@ -15,8 +15,21 @@
         </tbody>
     </table>
     <p>
-        <a href="/sites/add" class="btn btn-primary">Add New Site</a>
+        <a class="btn btn-primary" ng-click='siteQueryController.addSite()'>Add New Site</a>
     </p>
+    <button ng-click="showEdit()">Create Site</button>
+
+    <div ng-show="isEditVisible">
+        <hr />
+        <form>
+            <input type="hidden" ng-model="editableVideo.Id" />
+            <label>Title:</label>
+            <input type="text" ng-model="editableVideo.Title" required />
+            <label>Length</label>
+            <input type="number" ng-model="editableVideo.Length" min="1" max="360" />
+            <input type="submit" value="Save" ng-click="saveVideo(editableVideo)" />
+        </form>
+    </div>
     <p>Test = {{siteQueryController.test}}</p>
     <p>function = {{siteQueryController.getData()}}</p>
 </div>
