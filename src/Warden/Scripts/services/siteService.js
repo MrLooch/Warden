@@ -1,16 +1,33 @@
 ﻿(function () {
     'use strict';
    
+    // Create a site service to perform CRUD operations
     angular
-       .module('siteServiceModule', ['ngResource'])
-       .factory('Site', Site);
+       .module('wardenapp')
+       .factory('siteService', Site);
 
-    Site.$inject = ['$resource'];
+    Site.$inject = ['$http'];
 
-    function Site($resource) {
+    // Contains all the CRUD functions
+    function Site($http) {
 
-        var urlBase = '/api/sites/:id';
-        return $resource(urlBase, { Id: "@Id" }, { "update": { method: "PUT" } });
-    }
+        var urlBase = '/api/sites/';
+        var factory = {};
+
+        // Get all the sites
+        factory.getSites = function() {
+            return $http.get(urlBase);
+
+        };
+        
+        // Insert new site
+        factory.insertSite = function (site) {
+            return $http.post(urlBase + 'addSite', site)
+                .then(function (results) {
+                    return results.data;
+                });
+        };
+        return factory;
+    };
 
 })();

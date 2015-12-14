@@ -11,15 +11,18 @@ namespace Warden.API
     [Route("api/[controller]")]
     public class SitesController : Controller
     {
-        private List<Site> sites; 
+        private static List<Site> sites = null; 
         public SitesController()
         {
-            this.sites = new List<Site>()
+            if (SitesController.sites == null)
             {
-                 new Site() { Address = "615 Dandenon Road Armadale 3143 VIC", Name = "Jeppesen" },
-                    new Site() { Address = "101 Collin Street Melbourne 3000 VIC", Name = "Telstra" },
-                    new Site() { Address = "Hawkers Fishermens Bend 3001 VIC", Name = "Boeing" }
-            };
+                SitesController.sites = new List<Site>()
+                {
+                     new Site() { Address = "615 Dandenon Road Armadale 3143 VIC", Name = "Jeppesen" },
+                        new Site() { Address = "101 Collin Street Melbourne 3000 VIC", Name = "Telstra" },
+                        new Site() { Address = "Hawkers Fishermens Bend 3001 VIC", Name = "Boeing" }
+                };
+            }
         }
         // GET: api/values
         [HttpGet]
@@ -32,6 +35,22 @@ namespace Warden.API
         {
             sites.Add(site);
             return new ObjectResult(site);
+        }
+
+        [HttpPost]
+        [Route("api/sites/add/{id}")]
+        public IActionResult Post(int id, [FromBody]Site site)
+        {
+            sites.Add(site);
+            return new ObjectResult(site);
+        }
+
+        [HttpPost]
+        [Route("addSite")]
+        public IActionResult AddSite([FromBody]Site site)
+        {
+            sites.Add(site);
+            return Ok(site);
         }
 
         // GET api/values/5

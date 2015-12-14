@@ -9,24 +9,45 @@
     //-----------------------------------------------
     // Query Controller
     //-----------------------------------------------
-    SiteQueryController.$inject = ['Site'];
+    SiteQueryController.$inject = ['siteService', '$log', '$window'];
 
-    function SiteQueryController(Site) {
+    function SiteQueryController(siteService, $log, $window) {
         var vm = this;
-        vm.sites = Site.query();
-        vm.newSite = new Site();
+
+        init();
+        vm.newSite = {};
         vm.newSite.Name = "Google";
         vm.newSite.Address = "Sydney Australia";
         vm.test = "Looch";
-
+        vm.sites = {};
         vm.getData = function () {
             return "Hello Function";
         };
 
         vm.addSite = function () {            
-            vm.newSite.$save();
-            vm.sites.push(vm.newSite);
+            //vm.newSite.$save();
+            //vm.sites.push(vm.newSite);
         };
+
+        function init() {
+
+            $log.message = "init message";
+            getSites();
+        };
+
+        function getSites() {
+            siteService.getSites()
+            .then(function (results) {
+                vm.sites = results.data;
+            }, function (error) {
+                $window.alert(error.message);
+            });
+        };
+
+        vm.insertSite = function () {
+            vm.sites.push(vm.newSite);
+            siteService.insertSite(vm.newSite);
+        }
     }
 
     //-----------------------------------------------

@@ -1,10 +1,10 @@
 ﻿(function () {
     'use strict';
 
-    config.$inject = ['$routeProvider', '$locationProvider'];
-    angular.module('wardenapp', ['ngRoute','siteServiceModule']).config(config);
+    config.$inject = ['$routeProvider', '$locationProvider', '$logProvider'];
+    angular.module('wardenapp', ['ngRoute']).config(config);
 
-    function config($routeProvider, $locationProvider) {        
+    function config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.when('/', {
                           templateUrl: '/pages/home.html'
                       })
@@ -25,6 +25,8 @@
 
 
         $locationProvider.html5Mode(true);
+
+        $logProvider.debugEnabled(true);
     }
 
 })();

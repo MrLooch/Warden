@@ -7,7 +7,9 @@ namespace Warden.Models
 {
     public class Site
     {
-        public int 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
