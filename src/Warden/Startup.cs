@@ -25,30 +25,20 @@ namespace Warden
         {
             services.AddMvc();
 
-            ConnectionConfig connectionConfig = new ConnectionConfig();
-
-            //services.AddSingleton<IRepository<Site>,new RepositoryMongoDB<Site>(connectionConfig, "Sites") > ();
-
             // Create the Autofac container builder.
             var builder = new ContainerBuilder();
-            //// Add any Autofac modules or registrations.
+            
+            // Add any Autofac modules or registrations.
             builder.RegisterModule(new AutofacModule());
-            //// Populate the services.
-            ////This Line fails 
-            //builder.
-            //// Build the container.
+            
+            // Populate the services.            
+            builder.Populate(services);
+            
+            // Build the container.
             var container = builder.Build();
-            // Resolve and return the service provider.
-            //return service provider
+            
+            // Resolve and return the service provider.            
             return container.ResolveOptional<IServiceProvider>();
-
-            //services.AddScoped<ISiteService, SiteService>();
-
-            //services.AddInstance(services);
-            //services.AddSingleton<IRepository<Site>, RepositoryMongoDB<Site>>();
-            //services.AddSingleton<ISiteService, SiteService>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

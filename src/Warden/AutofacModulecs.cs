@@ -23,16 +23,16 @@ namespace Warden
                 .As<IRepository<Site>>()
                 .InstancePerLifetimeScope();
 
+            builder
+                .Register(c => new SiteService(siteRepo))
+                .As<ISiteService>()
+                .InstancePerLifetimeScope();
+
             //builder.RegisterType<SiteService>()
             //    .WithParameter(
             //        new ResolvedParameter(
             //            (pi, ctx) => pi.ParameterType == typeof(IRepository<Site>),
             //            (pi, ctx) => ctx.Resolve<RepositoryMongoDB<Site>>()));
-            //builder.Build();
-            builder
-                .Register(c => new SiteService(siteRepo))
-                .As<ISiteService>()
-                .InstancePerLifetimeScope();
 
         }
     }
