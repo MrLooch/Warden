@@ -5,10 +5,16 @@
   },
 
   "dependencies": {
+    "Autofac": "4.0.0-rc1-177",
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
     "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
     "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final"
+    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
+    "Warden.Core.Domain": "1.0.0-*",
+    "Warden.DataModel": "1.0.0-*",
+    "Warden.DataService.Core": "1.0.0-*",
+    "Warden.Services.Site": "1.0.0-*"
   },
 
   "commands": {
@@ -16,8 +22,7 @@
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
+    "dnx451": { }
   },
 
   "exclude": [

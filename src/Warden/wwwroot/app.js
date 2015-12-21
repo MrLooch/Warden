@@ -15,49 +15,37 @@
             redirectTo: "/"
         }), b.html5Mode(!0), c.debugEnabled(!0);
     }
-    a.$inject = [ "$routeProvider", "$locationProvider", "$logProvider" ], angular.module("wardenapp", [ "ngRoute" ]).config(a);
+    a.$inject = [ "$routeProvider", "$locationProvider", "$logProvider" ], angular.module("wardenapp", [ "ngRoute", "ngResource" ]).config(a);
 }(), function() {
     "use strict";
     function a(a, b, c) {
-        function d() {
-            b.message = "init message", e();
-        }
-        function e() {
-            a.getSites().then(function(a) {
-                f.sites = a.data;
+        var d = this;
+        d.newSite = {}, d.newSite.Id = 1, d.sites = {}, d.isEditVisible = !1, d.showEdit = function() {
+            d.isEditVisible = !0;
+        }, d.addNewSite = function(a) {
+            d.isEditVisible = !1, d.insertSite(d.newSite), d.newSite = {};
+        }, d.getSites = function() {
+            b.message = "get all sites", a.getSites().then(function(a) {
+                d.sites = a.data;
             }, function(a) {
                 c.alert(a.message);
             });
-        }
-        var f = this;
-        d(), f.newSite = {}, f.newSite.Name = "Google", f.newSite.Address = "Sydney Australia", 
-        f.test = "Looch", f.sites = {}, f.getData = function() {
-            return "Hello Function";
-        }, f.addSite = function() {}, f.insertSite = function() {
-            f.sites.push(f.newSite), a.insertSite(f.newSite);
-        };
+        }, d.insertSite = function(c) {
+            b.message = "insert new site " + c.Name, a.insertSite(c), d.sites.push(c);
+        }, d.getSites();
     }
-    function b(a, b) {
-        var c = this;
-        c.site = new b(), c.add = function() {
-            c.site.save(function() {
-                a.path("/");
-            });
-        };
-    }
-    angular.module("wardenapp").controller("SiteQueryController", a).controller("SiteAddController", b), 
-    a.$inject = [ "siteService", "$log", "$window" ], b.$inject = [ "$scope", "$location", "Site" ];
+    angular.module("wardenapp").controller("SiteQueryController", a), a.$inject = [ "siteService", "$log", "$window" ];
 }(), function() {
     "use strict";
-    function a(a) {
-        var b = "/api/sites/", c = {};
-        return c.getSites = function() {
-            return a.get(b);
-        }, c.insertSite = function(c) {
-            return a.post(b + "addSite", c).then(function(a) {
+    function a(a, b) {
+        var c = "/api/sites/", d = {};
+        return d.getSites = function() {
+            return b.get(c);
+        }, d.insertSite = function(a) {
+            return b.post(c, a).then(function(a) {
                 return a.data;
             });
-        }, c;
+        }, d;
     }
-    angular.module("wardenapp").factory("siteService", a), a.$inject = [ "$http" ];
+    angular.module("wardenapp").factory("siteService", a), a.$inject = [ "$resource", "$http" ];
 }();

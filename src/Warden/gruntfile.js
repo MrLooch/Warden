@@ -11,13 +11,13 @@ module.exports = function (grunt) {
                 options: {
                     beautify: true
                 },
-                files: { 'wwwroot/app.js': ['Scripts/app.js', 'Scripts/**/*.js'] }
+                files: { 'wwwroot/app.js': ['app/app.js', 'app/**/*.js'] }
             }
         },
 
         watch: {
             scripts: {
-                files: ['Scripts/**/*.js'],
+                files: ['app/**/*.js'],
                 tasks: ['uglify']
             }
         }

@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0-*",
+  "description": "Warden.DataModel Class Library",
+  "authors": [ "luciano.gualano" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": "4.0.0.0"
+      }
+    },
+    "dnxcore50": { }
+  }
+}

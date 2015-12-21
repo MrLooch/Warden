@@ -6,10 +6,10 @@
        .module('wardenapp')
        .factory('siteService', Site);
 
-    Site.$inject = ['$http'];
+    Site.$inject = ['$resource','$http'];
 
     // Contains all the CRUD functions
-    function Site($http) {
+    function Site($resource,$http) {
 
         var urlBase = '/api/sites/';
         var factory = {};
@@ -22,7 +22,7 @@
         
         // Insert new site
         factory.insertSite = function (site) {
-            return $http.post(urlBase + 'addSite', site)
+            return $http.post(urlBase, site)
                 .then(function (results) {
                     return results.data;
                 });

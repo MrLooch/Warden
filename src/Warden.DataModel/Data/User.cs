@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Warden.DataModel.Entities;
 
-namespace Warden.Models
+namespace Warden.DataModel
 {
-    public class User
+    public class User : IEntity
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public Role Role { get; set; }
         public Company Company { get; set; }
+        // Reference id instead of concert????                
         public Site Site { get; set; }
     }
 }
