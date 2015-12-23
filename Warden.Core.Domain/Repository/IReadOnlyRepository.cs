@@ -18,7 +18,7 @@ namespace Warden.Core.Domain.Repository
         /// <returns>
         /// The <see cref="T"/>.
         /// </returns>
-        Task<T> FindByIdAsync(int id);
+        Task<T> FindByIdAsync(Guid id);
 
         /// <summary>
         /// 

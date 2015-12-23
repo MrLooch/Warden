@@ -16,7 +16,14 @@ namespace Warden
     {
         protected override void Load(ContainerBuilder builder)
         {
-            ConnectionConfig connectionConfig = new ConnectionConfig();
+            ConnectionConfig connectionConfig = new ConnectionConfig()
+            {
+                DatabaseName = "Warden"
+            };
+            ObjectConfiguration objectConfig = new ObjectConfiguration();
+            objectConfig.mapObjects();
+
+            connectionConfig.connect();
             IRepository<Site> siteRepo = new RepositoryMongoDB<Site>(connectionConfig, "Sites");
             builder
                 .Register(c => siteRepo)

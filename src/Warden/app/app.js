@@ -2,7 +2,7 @@
     'use strict';
 
     config.$inject = ['$routeProvider', '$locationProvider', '$logProvider'];
-    angular.module('wardenapp', ['ngRoute','ngResource']).config(config);
+    angular.module('wardenapp', ['ngRoute', 'ngResource', 'ui.grid','ui.grid.edit']).config(config);
 
     function config($routeProvider, $locationProvider, $logProvider) {
         $routeProvider.when('/', {

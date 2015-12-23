@@ -9,7 +9,7 @@ namespace Warden.DataModel
 {
     public class Site : IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// 

@@ -11,24 +11,26 @@ namespace Warden.DataService.Core.Connection
     {
         private MongoClient mongoClient;
         private IMongoDatabase mongoDb;
-        private string databaseName;
-        private string host;
-        private int port;
-        private int timeout;
-
+        
+        
+      
         public ConnectionConfig(string host = "localhost",
                                int port = 27017,
                                string databaseName = "",
                                int timeoutSec = 5)
         {
-            this.host = host;
-            this.port = port;
-            this.databaseName = databaseName;
+            Host = host;
+            Port = port;
+            DatabaseName = databaseName;
             this.mongoClient = null;
             this.mongoDb = null;
-            this.timeout = timeoutSec;
+            Timeout = timeoutSec;
         }
 
+        public string Host { get; set; }
+        public string DatabaseName { get; set; }
+        public int Port { get; set; }
+        public int Timeout { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -77,7 +79,7 @@ namespace Warden.DataService.Core.Connection
         /// </summary>
         public void connect()
         {
-            connect(this.host, this.port, this.databaseName, this.timeout);
+            connect(Host, Port, DatabaseName, Timeout);
         }
 
         /// <summary>
@@ -89,9 +91,9 @@ namespace Warden.DataService.Core.Connection
                             string databaseName,
                             int timeout = 5)
         {
-            this.databaseName = databaseName;
-            this.host = host;
-            this.port = port;
+            DatabaseName = databaseName;
+            Host = host;
+            Port = port;
             bool connected = false;
             var clientSettings = new MongoClientSettings
             {

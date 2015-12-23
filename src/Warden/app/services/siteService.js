@@ -24,9 +24,29 @@
         factory.insertSite = function (site) {
             return $http.post(urlBase, site)
                 .then(function (results) {
+                    site.id = results.data.id;
                     return results.data;
                 });
         };
+
+        // Insert new site
+        factory.updateSite = function (site) {
+            return $http.put(urlBase, site)
+                .then(function (results) {
+                    site.id = results.data.id;
+                    return results.data;
+                });
+        };
+
+        // Delte site
+        factory.deleteSite = function (id) {
+            return $http.delete(urlBase +id)
+            .then(function (results) {
+                return results.data;
+            });
+        }
+        
+
         return factory;
     };
 

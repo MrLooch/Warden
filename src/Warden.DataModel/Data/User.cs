@@ -8,7 +8,7 @@ namespace Warden.DataModel
 {
     public class User : IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public Role Role { get; set; }
         public Company Company { get; set; }

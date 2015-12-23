@@ -14,40 +14,48 @@ namespace Warden.API
     public class SitesController : Controller
     {
         private static List<Site> sites = null;
-        //[FromServices]
+
         private ISiteService siteService = null;
 
-        //private ISiteService siteService = null;
         public SitesController(ISiteService siteService)
         {
-            this.siteService = siteService;
-            if (SitesController.sites == null)
-            {
-                SitesController.sites = new List<Site>()
-                {
-                     new Site() { Id = 1, Address = "615 Dandenon Road Armadale 3143 VIC", Name = "Jeppesen" },
-                     new Site() { Id = 2, Address = "101 Collin Street Melbourne 3000 VIC", Name = "Telstra" },
-                     new Site() { Id = 3, Address = "Hawkers Fishermens Bend 3001 VIC", Name = "Boeing" }
-                };
-            }
+            this.siteService = siteService;           
         }
 
 
-
-        // GET: api/sites
+        /// <summary>
+        /// GET: api/sites
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Site> Get()
+        public async Task<IEnumerable<Site>> Get()
         {
+            List<Site> sites = new List<Site>();
+
+            try
+            {
+                sites = await this.siteService.Get();
+            }
+            catch(Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+
             return sites;
         }
-        // Get based by site entity id
-        [HttpGet("{id:int}")]
-        public IActionResult Get(int id)
+
+        /// <summary>
+        /// Get based by site entity id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> Get(Guid id)
         {
             Site site = null;
             try
             {
-                site = SitesController.sites.SingleOrDefault(s => s.Id == id);
+                site = await this.siteService.GetById(id);
             }
             catch (ArgumentNullException)
             {
@@ -56,18 +64,31 @@ namespace Warden.API
             return new ObjectResult(site);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="site"></param>
+        /// <returns></returns>
         [HttpPost]
-        public IActionResult Post([FromBody]Site site)
-        {
-            
+        public async Task<IActionResult> Post([FromBody]Site site)
+        {            
             // Check to see if the id is unique?
-            sites.Add(site);
+            await this.siteService.Add(site);
             return new ObjectResult(site);
         }
 
-        [HttpPost]
-        [Route("add/{id}")]
-        public IActionResult Post(int id, [FromBody]Site site)
+        [HttpPut]
+        [Route("update")]
+        public async Task<IActionResult> Update([FromBody]Site site)
+        {
+            // Check id is unique
+            await this.siteService.Update(site);
+            return new ObjectResult(site);
+        }
+
+        [HttpPut]
+        [Route("update/{Guid}")]
+        public IActionResult Update(Guid? id, [FromBody]Site site)
         {
             // Check id is unique
             sites.Add(site);
@@ -76,9 +97,12 @@ namespace Warden.API
        
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            // Find site
+            // Check id is unique
+            await this.siteService.Delete(id);
+            // Return true or false????
+            return new ObjectResult(id);
         }
     }
 }

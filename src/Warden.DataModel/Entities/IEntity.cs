@@ -10,6 +10,6 @@ namespace Warden.DataModel.Entities
         /// <summary>
         /// The unqiue WaypointId of the entity object
         /// </summary>
-        int Id { get; set; }
+        Guid Id { get; set; }
     }
 }

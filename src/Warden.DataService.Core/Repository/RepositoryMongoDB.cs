@@ -129,7 +129,7 @@ namespace Warden.DataService.Core.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<bool> RemoveAsync(int id,
+        public async Task<bool> RemoveAsync(Guid id,
                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             bool removed = false;
@@ -325,7 +325,7 @@ namespace Warden.DataService.Core.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<T> FindByIdAsync(int id)
+        public async Task<T> FindByIdAsync(Guid id)
         {
             T findItem = default(T);
 

@@ -11,8 +11,9 @@ namespace Warden.Services
     public interface ISiteService
     {
         Task<List<Site>> Get();
+        Task<Site> GetById(Guid id);
         Task Add(Site site);
         Task Update(Site site);
-        Task Delete(int id);
+        Task Delete(Guid id);
     }
 }

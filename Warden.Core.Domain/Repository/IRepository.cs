@@ -45,7 +45,7 @@ namespace Warden.Core.Domain
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<bool> RemoveAsync(int id,
+        Task<bool> RemoveAsync(Guid id,
                                 CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Removes the specified entity.

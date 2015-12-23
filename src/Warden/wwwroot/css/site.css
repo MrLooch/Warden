@@ -32,3 +32,8 @@ textarea {
   color: #fff;
   background-color: dodgerblue;
 }
+
+.siteGrid {
+  height: 450px;
+  width: 100%;
+}

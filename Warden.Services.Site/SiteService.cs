@@ -15,7 +15,7 @@ namespace Warden.Services
         {
             this.siteRepostiry = siteRepostiry;
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -29,7 +29,7 @@ namespace Warden.Services
         /// 
         /// </summary>
         /// <param name="id"></param>
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
             await this.siteRepostiry.RemoveAsync(id);
         }
@@ -42,6 +42,16 @@ namespace Warden.Services
         {
             return await this.siteRepostiry.GetAllAsync();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Site> GetById(Guid id)
+        {
+            return await this.siteRepostiry.FindByIdAsync(id);
+        }
+
 
         /// <summary>
         /// 
