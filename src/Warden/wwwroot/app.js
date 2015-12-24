@@ -28,21 +28,16 @@
             b.debug("'Deleting row " + a), f.deleteSite(a);
         }, f.gridOptions = {
             columnDefs: [ {
-                field: "Id",
-                name: "",
-                cellTemplate: "pages/edit-button.html",
-                width: 34,
-                enableFiltering: !1
-            }, {
                 field: "Name",
                 displayName: "Name"
             }, {
                 field: "Address",
                 displayName: "Address"
             }, {
+                field: "href",
                 name: "Action",
                 cellEditableCondition: !1,
-                cellTemplate: '<button class ="btn btn-danger" ng-click="grid.appScope.Delete(row)">Delete</button>',
+                cellTemplate: "pages/edit-button.html",
                 enableFiltering: !1
             } ],
             multiSelect: !1,

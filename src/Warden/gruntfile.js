@@ -5,6 +5,7 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkID=513275&clcid=0x
 module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.initConfig({
         uglify: {
             my_target: {
@@ -20,8 +21,17 @@ module.exports = function (grunt) {
                 files: ['app/**/*.js'],
                 tasks: ['uglify']
             }
+        },
+        copy: {
+            files: {
+                    cwd: 'wwwroot/lib/bootstrap/fonts',
+                    dest: 'wwwroot/fonts',
+                    src: '**',
+                    expand: true
+            }
         }
     });
 
     grunt.registerTask('default', ['uglify', 'watch']);
+    
 };

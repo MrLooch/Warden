@@ -1,5 +1,9 @@
-﻿<div class="ui-grid-cell-contents">
-    <button type="button" class="btn btn-xs btn-primary" ng-click="grid.appScope.vm.editRow(grid, row)">
-        <i class="fa fa-edit"></i>
+﻿<div class="ui-grid-cell-contents">    
+    <button class="btn btn-xs btn-primary" ng-click="grid.appScope.Edit(row)">
+        <span class="glyphicon glyphicon-pencil" style="color:blue"></span>&nbsp;&nbsp;Edit
+    </button>
+    <button class="btn btn-xs btn-primary" ng-click="grid.appScope.Delete(row)">
+        <span class="glyphicon glyphicon-remove" style="color:red"></span>&nbsp;&nbsp;Delete
     </button>
 </div>
+

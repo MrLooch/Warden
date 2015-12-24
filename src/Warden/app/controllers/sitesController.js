@@ -28,17 +28,23 @@
 
         vm.gridOptions = {
             //data: 'sites',
-            columnDefs: [
-                {
-                    field: 'Id', name: '',
-                    cellTemplate: 'pages/edit-button.html', width: 34, enableFiltering: false
-                },
+            columnDefs: [               
                 { field: 'Name', displayName: 'Name' },
                 { field: 'Address', displayName: 'Address' },
                 {
+                    field : 'href',
                     name: 'Action',
                     cellEditableCondition: false,
-                    cellTemplate: '<button class ="btn btn-danger" ng-click="grid.appScope.Delete(row)">Delete</button>', enableFiltering: false
+                    cellTemplate: 'pages/edit-button.html',
+                    enableFiltering: false
+                    //cellTemplate:                        
+                    //    '<button class ="btn" ng-click="grid.appScope.Edit(row)">\
+                    //        <span class="glyphicon glyphicon-pencil" style="color:blue"></span>&nbsp;&nbsp;Edit\
+                    //    </button>\
+                    //    <button class ="btn" ng-click="grid.appScope.Delete(row)">\
+                    //    <span class="glyphicon glyphicon-remove" style="color:red"></span>&nbsp;&nbsp;Delete\
+                    //    </button>'
+                        
                 }
             ],
             multiSelect: false,
