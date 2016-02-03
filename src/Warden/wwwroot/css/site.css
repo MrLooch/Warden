@@ -37,3 +37,19 @@ textarea {
   height: 450px;
   width: 100%;
 }
+
+#sides{
+margin:0;
+}
+#left{
+float:left;
+width:50%;
+overflow:hidden;
+}
+#right{
+float:left;
+width:50%;
+overflow:hidden;
+} 
+
+.clear {clear:both;}

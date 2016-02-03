@@ -1,8 +1,10 @@
 !function() {
     "use strict";
-    function a(a, b, c) {
+    function a(a, b, c, d) {
         a.when("/", {
-            templateUrl: "/pages/home.html"
+            templateUrl: "/pages/home.html",
+            controller: "HomeController",
+            controllerAs: "homeCtrl"
         }).when("/about", {
             templateUrl: "/pages/about.html"
         }).when("/contact", {
@@ -11,11 +13,31 @@
             templateUrl: "/pages/sites.html",
             controller: "SiteQueryController",
             controllerAs: "siteQueryController"
+        }).when("/signup", {
+            templateUrl: "/pages/signup.html",
+            controller: "SiteQueryController",
+            controllerAs: "siteQueryController"
         }).otherwise({
             redirectTo: "/"
         }), b.html5Mode(!0), c.debugEnabled(!0);
     }
-    a.$inject = [ "$routeProvider", "$locationProvider", "$logProvider" ], angular.module("wardenapp", [ "ngRoute", "ngResource", "ui.grid", "ui.grid.edit" ]).config(a);
+    a.$inject = [ "$routeProvider", "$locationProvider", "$logProvider", "ngDialogProvider" ], 
+    angular.module("wardenapp", [ "ngRoute", "ngResource", "ui.grid", "ui.grid.edit", "ngDialog" ]).config(a);
+}(), function() {
+    "use strict";
+    function a(a, b, c) {
+        function d() {}
+        var e = this;
+        e.title = "homeController", d(), e.showsignup = function() {
+            b.open({
+                template: "pages/signup.html",
+                plain: !1,
+                className: "ngdialog-theme-default",
+                scope: c
+            });
+        };
+    }
+    angular.module("wardenapp").controller("HomeController", a), a.$inject = [ "$location", "ngDialog", "$scope" ];
 }(), function() {
     "use strict";
     function a(a, b, c, d) {
