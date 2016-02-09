@@ -2,7 +2,7 @@
     'use strict';
 
     config.$inject = ['$routeProvider', '$locationProvider', '$logProvider', 'ngDialogProvider'];
-    angular.module('wardenapp', ['ngRoute', 'ngResource', 'ui.grid','ui.grid.edit', 'ngDialog']).config(config);
+    angular.module('wardenapp', ['ngRoute', 'ngResource', 'ui.grid', 'ui.grid.edit', 'ngDialog']).config(config);
 
     function config($routeProvider, $locationProvider, $logProvider, ngDialogProvider) {
         $routeProvider.when('/', {
@@ -35,17 +35,14 @@
 
         $logProvider.debugEnabled(true);
 
-        //ngDialogProvider.setDefaults({
-        //    className: "ngdialog-theme-default",
-        //    plain: true,
-        //    showClose: true,
-        //    closeByDocument: true,
-        //    closeByEscape: true,
-        //    appendTo: false,
-        //    preCloseCallback: function () {
-        //        console.log("default pre-close callback");
-        //    }
-        //});
+        ngDialogProvider.setDefaults({
+            className: "ngdialog-theme-default",
+            plain: false,
+            showClose: true,
+            closeByDocument: true,
+            closeByEscape: true,
+            appendTo: false          
+        });
     }
 
 })();

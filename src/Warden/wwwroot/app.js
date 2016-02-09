@@ -19,25 +19,39 @@
             controllerAs: "siteQueryController"
         }).otherwise({
             redirectTo: "/"
-        }), b.html5Mode(!0), c.debugEnabled(!0);
+        }), b.html5Mode(!0), c.debugEnabled(!0), d.setDefaults({
+            className: "ngdialog-theme-default",
+            plain: !1,
+            showClose: !0,
+            closeByDocument: !0,
+            closeByEscape: !0,
+            appendTo: !1
+        });
     }
     a.$inject = [ "$routeProvider", "$locationProvider", "$logProvider", "ngDialogProvider" ], 
     angular.module("wardenapp", [ "ngRoute", "ngResource", "ui.grid", "ui.grid.edit", "ngDialog" ]).config(a);
 }(), function() {
     "use strict";
-    function a(a, b, c) {
-        function d() {}
-        var e = this;
-        e.title = "homeController", d(), e.showsignup = function() {
+    function a(a, b, c, d, e) {
+        var f = this;
+        f.title = "homeController", e.debug("Just started home controller!"), f.username = null, 
+        f.email = null, f.password = null, f.errorMessage = null, f.login = function(a, b, c) {
+            c.debug("Hello"), b.login(f.email, f.password).then(function(b) {
+                return b ? (b && $routeParams && $routeParams.redirect && (path += $routeParams.redirect), 
+                void a.path(path)) : void (f.errorMessage = "Unable to login");
+            });
+        }, f.showsignup = function() {
             b.open({
                 template: "pages/signup.html",
                 plain: !1,
                 className: "ngdialog-theme-default",
-                scope: c
+                scope: c,
+                controller: "HomeController",
+                controllerAs: "vm"
             });
         };
     }
-    angular.module("wardenapp").controller("HomeController", a), a.$inject = [ "$location", "ngDialog", "$scope" ];
+    angular.module("wardenapp").controller("HomeController", a), a.$inject = [ "$location", "ngDialog", "$scope", "authService", "$log" ];
 }(), function() {
     "use strict";
     function a(a, b, c, d) {
@@ -87,6 +101,39 @@
         }, e();
     }
     angular.module("wardenapp").controller("SiteQueryController", a), a.$inject = [ "siteService", "$log", "$window", "$scope" ];
+}(), function() {
+    "use strict";
+    function a(a) {
+        function b(a) {
+            d.user.isAuthenticated = a, $rootScope.$broadcast("loginStatusChanged", a);
+        }
+        var c = "/api/dataservice/", d = {
+            loginPath: "/login",
+            user: {
+                isAuthenticated: !1,
+                roles: null
+            }
+        };
+        return d.login = function(d, e) {
+            return a.post(c + "login", {
+                userLogin: {
+                    userName: d,
+                    password: e
+                }
+            }).then(function(a) {
+                var c = a.data.status;
+                return b(c), c;
+            });
+        }, d.logout = function() {
+            return a.post(c + "logout").then(function(a) {
+                var c = !a.data.status;
+                return b(c), c;
+            });
+        }, d.redirectToLogin = function() {
+            $rootScope.$broadcast("redirectToLogin", null);
+        }, d;
+    }
+    angular.module("wardenapp").factory("authService", a), a.$inject = [ "$http" ];
 }(), function() {
     "use strict";
     function a(a, b) {

@@ -14,7 +14,17 @@
     "Warden.Core.Domain": "1.0.0-*",
     "Warden.DataModel": "1.0.0-*",
     "Warden.DataService.Core": "1.0.0-*",
-    "Warden.Services.Site": "1.0.0-*"
+    "Warden.Services.Site": "1.0.0-*",
+    "Microsoft.AspNet.Authentication": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
+    "Microsoft.Owin": "3.0.1",
+    "Microsoft.Owin.Hosting": "3.0.1",
+    "Microsoft.Owin.Host.SystemWeb": "3.0.1",
+    "Microsoft.Owin.Security.Cookies": "3.0.1",
+    "Microsoft.Owin.Security.OAuth": "3.0.1",
+    "Microsoft.Owin.Security.Google": "3.0.1",
+    "Microsoft.AspNet.Owin": "1.0.0-rc1-final",
+    "Owin.Security.Providers": "1.26.0"
   },
 
   "commands": {

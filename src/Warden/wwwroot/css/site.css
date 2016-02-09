@@ -1,5 +1,4 @@
-﻿body {
-    padding-top: 50px;
+﻿body {    
     padding-bottom: 20px;
 }
 
@@ -23,33 +22,84 @@ textarea {
     max-width: 280px;
 }
 
-.bg-mainpage {
-  color: #fff;
-  background-color: greenyellow;
-}
-
-.bg-sectionbg {
-  color: #fff;
-  background-color: dodgerblue;
-}
-
 .siteGrid {
   height: 450px;
   width: 100%;
 }
 
-#sides{
-margin:0;
+.hero-unit {
+    background-image: url('../images/superboy.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    height:900px;
+  }
+.hero-unit h1 {
+    color: #FFFFFF;
+    font-size: 60px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 0;
 }
-#left{
-float:left;
-width:50%;
-overflow:hidden;
+.hero-unit h2 {
+    font-size: 25px;
+    color: #FFFFFF;   
 }
-#right{
-float:left;
-width:50%;
-overflow:hidden;
-} 
 
-.clear {clear:both;}
+.hero-unit p {
+    vertical-align: middle;
+
+}
+
+.hero-test {
+    vertical-align:middle;
+}
+
+p.one {
+    color:white;
+    font-size: 25px;
+    letter-spacing: -1px;
+    line-height: 1.5;
+    margin-bottom: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 100px;
+    padding-left: 0px;
+    text-align:left;
+}
+
+.navbar {
+   background-color: transparent;
+   background: transparent;
+   border-color: transparent;
+   
+}
+
+.navbar-default {
+  background-color:transparent;
+  background-image: none;
+  background-repeat: no-repeat;
+ }
+
+.nav {
+    color: #FFFFFF;
+}
+
+.navbar-custom {
+    color: #FFFFFF;
+}
+
+.navbar-custom a {
+    color: #fff;
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: white;
+}
+
+.nav > li > a:hover{
+    background-color:#FCC;
+}
+
+
+

@@ -7,7 +7,10 @@
   "licenseUrl": "",
 
   "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final"
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "AspNet.Identity.MongoDB": "2.0.8",
+    "Microsoft.AspNet.Identity.Core": "2.2.0",
+    "MongoDB.Driver": "2.0.0"
   },
 
   "frameworks": {
@@ -15,7 +18,6 @@
       "frameworkAssemblies": {
         "System.ComponentModel.DataAnnotations": "4.0.0.0"
       }
-    },
-    "dnxcore50": { }
+    }
   }
 }

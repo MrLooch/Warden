@@ -2,28 +2,19 @@
 <!DOCTYPE html>
 <html ng-app="wardenapp">
 <head>
-    <base href="/">
-    <!-- SCROLLS -->
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/angular-route/angular-route.min.js"></script>
-    <script src="lib/angular-resource/angular-resource.min.js"></script>
-    <script src="lib/angular-ui-grid/ui-grid.js"></script>
-    <script src="lib/ngDialog/js/ngDialog.min.js"></script>
-    <script src="app.js"></script>
-    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/site.css" rel="stylesheet">    
+    <base href="/">        
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">    
     <link href="css/bootstrap._cerulean.min.css" rel="stylesheet">
     <link href="lib/angular-ui-grid/ui-grid.css" rel="stylesheet">
     <link href="css/social-buttons.css" rel="stylesheet" />
     <link href="lib/ngDialog/css/ngDialog.min.css" rel="stylesheet" />
-    <link href="lib/ngDialog/css/ngDialog-theme-default.min.css" rel="stylesheet"/>
-    
-    <!-- SPELLS -->
-    <!-- load angular and angular route via CDN -->
+    <!--<link href="lib/ngDialog/css/ngDialog-theme-default.css" rel="stylesheet"/>-->
+    <link href="lib/ngDialog/css/ngDialog-theme-mine.css" rel="stylesheet" />        
+    <link href="css/site.css" rel="stylesheet">    
 </head>
-<body ng-cloak>
+<body ng-cloak"">
     <!-- HEADER AND NAVBAR -->
-    <header>
+    <!--<header>
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -38,16 +29,23 @@
                 </ul>
             </div>
         </nav>
-    </header>    
-    <!--<div class="container-fluid btn-group-sm text-center">
-        <h3> Keep Your Community Safe!</h3>
-        <img src="logo.png" />
-    </div>-->
+    </header>-->       
     <!-- MAIN CONTENT AND INJECTED VIEWS -->
-    <div id="main">
+    <div>
         <!-- angular templating -->
         <!-- this is where content will be injected -->
         <div ng-view></div>
     </div>
+
+    <!-- 3rd party libraries -->
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="lib/angular-ui-grid/ui-grid.min.js"></script>
+    <script src="lib/ngDialog/js/ngDialog.min.js"></script>
+
+    <!-- Load app main script and Angularjs minified controllers -->
+    <script src="app.js"></script>
+    
 </body>
 </html>
