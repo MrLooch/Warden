@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+  "description": "Warden.DataModel Class Library",
+  "authors": [ "luciano.gualano" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "AspNet.Identity.MongoDB": "2.0.8",
+    "Microsoft.AspNet.Identity.Core": "2.2.0",
+    "MongoDB.Driver": "2.0.0"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": "4.0.0.0"
+      }
+    }
+  }
+}

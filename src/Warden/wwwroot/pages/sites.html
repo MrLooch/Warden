@@ -1,35 +1,28 @@
 ﻿<div>
     <h1>Site List</h1>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="site in siteQueryController.sites">               
-                <td>{{site.Name}}</td>
-                <td>{{site.Address}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <p>
-        <a class="btn btn-primary" ng-click='siteQueryController.insertSite()'>Add New Site</a>
-    </p>
-    <button ng-click="showEdit()">Create Site</button>
+        <div id="siteGridId" ui-grid="siteQueryController.gridOptions" class="siteGrid" ui-grid-edit></div>
+    </div>
+     <br />
+    <div>
+        <a class="btn btn-primary" ng-click='siteQueryController.showEdit()'>Create New Site</a>
+    </div>
 
-    <div ng-show="isEditVisible">
-        <hr />
-        <form>
-            <input type="hidden" ng-model="editableVideo.Id" />
-            <label>Title:</label>
-            <input type="text" ng-model="editableVideo.Title" required />
-            <label>Length</label>
-            <input type="number" ng-model="editableVideo.Length" min="1" max="360" />
-            <input type="submit" value="Save" ng-click="saveVideo(editableVideo)" />
+    <div ng-if="siteQueryController.isEditVisible">
+        <form name="createNewSite">            
+            <p>
+                <p>
+                    <label>Name:</label>
+                </p>
+                <input name="test1" type="text" ng-model="siteQueryController.newSite.Name" ng-required="true" />
+            </p>
+            <p>
+                <p>
+                    <label>Address</label>
+                </p>
+                <input name="test2" type="text" ng-model="siteQueryController.newSite.Address" ng-required="true" />
+            </p>
+            <div>
+                <button name="button" class="btn btn-primary" ng-click='siteQueryController.addNewSite()'>Add</button>
+            </div>
         </form>
     </div>
-    <p>Test = {{siteQueryController.test}}</p>
-    <p>function = {{siteQueryController.getData()}}</p>
-</div>

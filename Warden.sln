@@ -1,16 +1,32 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{219897A0-58A9-455C-AD76-48465DC337DF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{219897A0-58A9-455C-AD76-48465DC337DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1243AC59-3341-4B0C-B39C-6B8B2DA55FE4}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Warden", "src\Warden\Warden.xproj", "{B165DC50-C69C-4AC1-9DEF-BF9C3F54EED9}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Warden.Web.App", "src\Warden\Warden.Web.App.xproj", "{B165DC50-C69C-4AC1-9DEF-BF9C3F54EED9}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Warden.Data.Repository.MongoDb", "src\Warden.DataService.Core\Warden.Data.Repository.MongoDb.xproj", "{03B732B5-83EA-4B60-9D57-6A3B453DAD49}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Warden.DataModel", "src\Warden.DataModel\Warden.DataModel.xproj", "{8CBA9FA6-4A73-4EAA-9E41-6877DB8098E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F28BFD7C-0004-4B83-943A-CF827C970F6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositoies", "Repositoies", "{135F187B-443D-48B2-8B73-40531081C45E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{5F932C7B-D7E7-4653-B447-7F7D586ECC84}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Warden.Core.Repository", "Warden.Core.Domain\Warden.Core.Repository.xproj", "{60B015E9-089B-47E1-8C16-AD56400FC491}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{296D125C-AEFB-447D-8120-F7AD6679EF2D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Warden.Services.Site", "Warden.Services.Site\Warden.Services.Site.xproj", "{4BB68FE2-830E-4FBF-910C-983E60B8851A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,11 +38,31 @@ Global
 		{B165DC50-C69C-4AC1-9DEF-BF9C3F54EED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B165DC50-C69C-4AC1-9DEF-BF9C3F54EED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B165DC50-C69C-4AC1-9DEF-BF9C3F54EED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03B732B5-83EA-4B60-9D57-6A3B453DAD49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B732B5-83EA-4B60-9D57-6A3B453DAD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03B732B5-83EA-4B60-9D57-6A3B453DAD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03B732B5-83EA-4B60-9D57-6A3B453DAD49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CBA9FA6-4A73-4EAA-9E41-6877DB8098E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CBA9FA6-4A73-4EAA-9E41-6877DB8098E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CBA9FA6-4A73-4EAA-9E41-6877DB8098E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CBA9FA6-4A73-4EAA-9E41-6877DB8098E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B015E9-089B-47E1-8C16-AD56400FC491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B015E9-089B-47E1-8C16-AD56400FC491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B015E9-089B-47E1-8C16-AD56400FC491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B015E9-089B-47E1-8C16-AD56400FC491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BB68FE2-830E-4FBF-910C-983E60B8851A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BB68FE2-830E-4FBF-910C-983E60B8851A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BB68FE2-830E-4FBF-910C-983E60B8851A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BB68FE2-830E-4FBF-910C-983E60B8851A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B165DC50-C69C-4AC1-9DEF-BF9C3F54EED9} = {219897A0-58A9-455C-AD76-48465DC337DF}
+		{B165DC50-C69C-4AC1-9DEF-BF9C3F54EED9} = {296D125C-AEFB-447D-8120-F7AD6679EF2D}
+		{03B732B5-83EA-4B60-9D57-6A3B453DAD49} = {135F187B-443D-48B2-8B73-40531081C45E}
+		{8CBA9FA6-4A73-4EAA-9E41-6877DB8098E4} = {5F932C7B-D7E7-4653-B447-7F7D586ECC84}
+		{60B015E9-089B-47E1-8C16-AD56400FC491} = {135F187B-443D-48B2-8B73-40531081C45E}
+		{4BB68FE2-830E-4FBF-910C-983E60B8851A} = {219897A0-58A9-455C-AD76-48465DC337DF}
 	EndGlobalSection
 EndGlobal

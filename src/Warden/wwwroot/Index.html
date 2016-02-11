@@ -2,22 +2,20 @@
 <!DOCTYPE html>
 <html ng-app="wardenapp">
 <head>
-    <base href="/">
-    <!-- SCROLLS -->
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
-    <script src="lib/angular-resource/angular-resource.js"></script>
-    <script src="app.js"></script>
-    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/site.css" rel="stylesheet">
-    <link href="css/site.css" rel="stylesheet">
+    <base href="/">        
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">    
     <link href="css/bootstrap._cerulean.min.css" rel="stylesheet">
-    <!-- SPELLS -->
-    <!-- load angular and angular route via CDN -->
+    <link href="lib/angular-ui-grid/ui-grid.css" rel="stylesheet">
+    <link href="css/social-buttons.css" rel="stylesheet" />
+    <link href="lib/ngDialog/css/ngDialog.min.css" rel="stylesheet" />
+    <!--<link href="lib/ngDialog/css/ngDialog-theme-default.css" rel="stylesheet"/>-->
+    <link href="lib/ngDialog/css/ngDialog-theme-mine.css" rel="stylesheet" />        
+    <link href="css/footer-distributed-with-address-and-phones.css" rel="stylesheet">    
+    <link href="css/site.css" rel="stylesheet">    
 </head>
-<body ng-cloak>
+<body ng-cloak"">
     <!-- HEADER AND NAVBAR -->
-    <header>
+    <!--<header>
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -32,35 +30,69 @@
                 </ul>
             </div>
         </nav>
-    </header>
-    <section data-track-prefix="Header Section"> 
-        <div class="jumbotron text-center bg-info">            
-            <h1 class="=container-fluid text-center">Warden is the way to keep your organisation safe and ready.</h1> 
-            <div class="twothirds-center text-center">
-                <p>
-                    Drop the lengthy email threads, out-of-date spreadsheets,
-                    no-longer-so-sticky notes, and clunky software for managing
-                    your projects. Trello lets you see everything about your
-                    project in a single glance.
-                </p>  
-                <a class="btn btn-primary" href="https://trello.com/signup" data-track="Sign Up"> Sign Up – It’s Free. </a>
-            </div>
-          <div class="layout-twothirds-center text-center"> 
-            <p> 
-              <a href="https://trello.com/login" class="btn btn-link" data-track="Login" style="padding: 1em 2em;"> Log in… </a> 
-            </p> 
-          </div>
-        </div> 
-    </section>
-    <!--<div class="container-fluid btn-group-sm text-center">
-        <h3> Keep Your Community Safe!</h3>
-        <img src="logo.png" />
-    </div>-->
+    </header>-->       
     <!-- MAIN CONTENT AND INJECTED VIEWS -->
-    <div id="main">
+    <div>
         <!-- angular templating -->
         <!-- this is where content will be injected -->
         <div ng-view></div>
     </div>
+
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <h3>Company<span>logo</span></h3>
+            <p class="footer-links">
+                <a href="#">Home</a>
+                ·
+                <a href="#">Blog</a>
+                ·
+                <a href="#">Pricing</a>
+                ·
+                <a href="#">About</a>
+                ·
+                <a href="#">Faq</a>
+                ·
+                <a href="#">Contact</a>
+            </p>
+            <p class="footer-company-name">Company Name &copy; 2015</p>
+        </div>
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>21 Revolution Street</span> Paris, France</p>
+            </div>
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+1 555 123456</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">support@company.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- 3rd party libraries -->
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="lib/angular-ui-grid/ui-grid.min.js"></script>
+    <script src="lib/ngDialog/js/ngDialog.min.js"></script>
+
+    <!-- Load app main script and Angularjs minified controllers -->
+    <script src="app.js"></script>
+    
+
 </body>
 </html>
