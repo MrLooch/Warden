@@ -83,6 +83,8 @@ p.one {
 
 .nav {
     color: #FFFFFF;
+    height: 100px;
+    line-height: 50px;
 }
 
 .navbar-custom {
@@ -95,10 +97,19 @@ p.one {
 
 .nav.navbar-nav.navbar-right li a {
     color: white;
+    height: 100px;
+    line-height: 50px;
 }
 
 .nav > li > a:hover{
     background-color:#FCC;
+}
+
+.navbar-brand {
+  height: 100px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 50px;
 }
 
 
