@@ -7,10 +7,8 @@ using Warden.DataModel.Entities;
 
 namespace Warden.DataModel
 {
-    public class Site : IEntity
+    public class Site : EntityBase
     {
-        public Guid Id { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

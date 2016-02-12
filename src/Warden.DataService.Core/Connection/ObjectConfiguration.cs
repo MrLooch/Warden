@@ -8,6 +8,7 @@ using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
 using Warden.DataModel.Entities;
 using Warden.DataModel;
+using Warden.DataModel.Authentication;
 
 namespace Warden.DataService.Core.Connection
 {
@@ -26,12 +27,31 @@ namespace Warden.DataService.Core.Connection
             //}
 
 
+            if (!BsonClassMap.IsClassMapRegistered(typeof(EntityBase)))
+            {
+                BsonClassMap.RegisterClassMap<EntityBase>(w =>
+                {
+                    w.AutoMap();
+                    w.IdMemberMap.SetIdGenerator(CombGuidGenerator.Instance);
+                    w.SetIgnoreExtraElements(true);
+                });
+            }
+
             if (!BsonClassMap.IsClassMapRegistered(typeof(Site)))
             {
                 BsonClassMap.RegisterClassMap<Site>(w =>
                 {
                     w.AutoMap();
-                    w.IdMemberMap.SetIdGenerator(CombGuidGenerator.Instance);                
+         
+                    w.SetIgnoreExtraElements(true);
+                });
+            }
+
+            if (!BsonClassMap.IsClassMapRegistered(typeof(UserRegistration)))
+            {
+                BsonClassMap.RegisterClassMap<UserRegistration>(w =>
+                {
+                    w.AutoMap();
                     w.SetIgnoreExtraElements(true);
                 });
             }

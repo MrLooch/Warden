@@ -12,7 +12,7 @@ using Warden.Core.Domain.Exceptions;
 
 namespace Warden.DataService.Core.Repository
 {
-    public class RepositoryMongoDB<T> : IRepository<T> where T : IEntity
+    public class RepositoryMongoDB<T> : IRepository<T> where T : EntityBase
     {
         private string collectionName;
         private  ConnectionConfig connection;

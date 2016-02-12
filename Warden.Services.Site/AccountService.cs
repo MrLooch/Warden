@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Warden.Core.Domain;
-using Warden.DataModel;
+using Warden.DataModel.Authentication;
+
 
 namespace Warden.Server.Services
 {
-    public class SiteService : ISiteService
+    public class AccountService : IAccountService
     {
-        private IRepository<Site> siteRepostiry;
+        private IRepository<UserRegistration> userRepostiry;
 
-        public SiteService(IRepository<Site> siteRepostiry)
+        public AccountService(IRepository<UserRegistration> userRepostiry)
         {
-            this.siteRepostiry = siteRepostiry;
+            this.userRepostiry = userRepostiry;
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="site"></param>
-        public async Task Add(Site site)
+        /// <param name="user"></param>
+        public async Task Add(UserRegistration user)
         {
-            await this.siteRepostiry.AddAsync(site);
+            await this.userRepostiry.AddAsync(user);
         }
 
         /// <summary>
@@ -31,25 +32,25 @@ namespace Warden.Server.Services
         /// <param name="id"></param>
         public async Task Delete(Guid id)
         {
-            await this.siteRepostiry.RemoveAsync(id);
+            await this.userRepostiry.RemoveAsync(id);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Site>> Get()
+        public async Task<List<UserRegistration>> Get()
         {
-            return await this.siteRepostiry.GetAllAsync();
+            return await this.userRepostiry.GetAllAsync();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<Site> GetById(Guid id)
+        public async Task<UserRegistration> GetById(Guid id)
         {
-            return await this.siteRepostiry.FindByIdAsync(id);
+            return await this.userRepostiry.FindByIdAsync(id);
         }
 
 
@@ -57,7 +58,7 @@ namespace Warden.Server.Services
         /// 
         /// </summary>
         /// <param name="site"></param>
-        public async Task Update(Site site)
+        public async Task Update(UserRegistration user)
         {
             await Task.FromResult(0);
             //await this.siteRepostiry.UpdateOneAsync()

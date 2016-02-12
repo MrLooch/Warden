@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Warden.DataModel;
-using Warden.Services;
+using Warden.Server.Services;
 using Warden.Core.Domain;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,8 +13,6 @@ namespace Warden.API
     [Route("api/[controller]")]
     public class SitesController : Controller
     {
-        private static List<Site> sites = null;
-
         private ISiteService siteService = null;
 
         public SitesController(ISiteService siteService)
@@ -90,8 +88,8 @@ namespace Warden.API
         [Route("update/{Guid}")]
         public IActionResult Update(Guid? id, [FromBody]Site site)
         {
-            // Check id is unique
-            sites.Add(site);
+            // Check id is unique            
+            this.siteService.Update(site);
             return new ObjectResult(site);
         }
        

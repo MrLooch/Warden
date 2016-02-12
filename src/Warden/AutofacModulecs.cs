@@ -8,7 +8,7 @@ using Warden.Core.Domain;
 using Warden.DataModel;
 using Warden.DataService.Core.Connection;
 using Warden.DataService.Core.Repository;
-using Warden.Services;
+using Warden.Server.Services;
 
 namespace Warden
 {

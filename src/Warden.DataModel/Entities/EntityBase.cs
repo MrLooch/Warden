@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Warden.DataModel.Entities
 {
-    public interface IEntity
+    public abstract class EntityBase
     {
         /// <summary>
         /// The unqiue WaypointId of the entity object
         /// </summary>
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

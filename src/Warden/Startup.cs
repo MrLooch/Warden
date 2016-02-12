@@ -6,7 +6,7 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Warden.Services;
+using Warden.Server.Services;
 using Warden.Core.Domain;
 using Warden.DataModel;
 using Warden.DataService.Core.Repository;

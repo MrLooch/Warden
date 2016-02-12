@@ -7,7 +7,7 @@ using Warden.DataModel.Entities;
 
 namespace Warden.Core.Domain.Repository
 {
-    public interface IReadOnlyRepository<T> where T : IEntity
+    public interface IReadOnlyRepository<T> where T : EntityBase
     {
         /// <summary>
         /// The find by id.

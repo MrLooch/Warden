@@ -1,6 +1,6 @@
 ﻿{
   "version": "1.0.0-*",
-  "description": "Warden.Services.Site Class Library",
+  "description": "Warden.Server.Services Class Library",
   "authors": [ "luciano.gualano" ],
   "tags": [ "" ],
   "projectUrl": "",

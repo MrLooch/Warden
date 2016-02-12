@@ -6,9 +6,8 @@ using Warden.DataModel.Entities;
 
 namespace Warden.DataModel
 {
-    public class User : IEntity
+    public class User : EntityBase
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public Role Role { get; set; }
         public Company Company { get; set; }

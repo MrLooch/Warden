@@ -72,37 +72,30 @@ p.one {
    background-color: transparent;
    background: transparent;
    border-color: transparent;
-   
+   border-width:0px;
+   box-shadow: 0px 0px;
 }
 
 .navbar-default {
   background-color:transparent;
   background-image: none;
   background-repeat: no-repeat;
- }
+  border-width:0px;
+  box-shadow: 0px 0px;
+}
 
 .nav {
     color: #FFFFFF;
     height: 100px;
     line-height: 50px;
-}
-
-.navbar-custom {
-    color: #FFFFFF;
-}
-
-.navbar-custom a {
-    color: #fff;
+    margin-right:50px;
 }
 
 .nav.navbar-nav.navbar-right li a {
     color: white;
-    height: 100px;
-    line-height: 50px;
-}
-
-.nav > li > a:hover{
-    background-color:#FCC;
+    height: 60px;
+    margin-top: 25px;    
+    margin-left: 25px;
 }
 
 .navbar-brand {
@@ -112,5 +105,8 @@ p.one {
   line-height: 50px;
 }
 
+.navbar-header{
+    margin-left:2% !important;
+}
 
 

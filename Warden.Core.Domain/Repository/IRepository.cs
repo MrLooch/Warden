@@ -17,7 +17,7 @@ namespace Warden.Core.Domain
     /// The domain entity
     /// </typeparam>
     public interface IRepository<T> : IReadOnlyRepository<T>
-        where T : IEntity
+        where T : EntityBase
     {
         Task CreateIndex(Expression<Func<T, object>> expression);
         /// <summary>

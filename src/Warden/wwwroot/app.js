@@ -33,25 +33,29 @@
 }(), function() {
     "use strict";
     function a(a, b, c, d, e) {
-        var f = this;
-        f.title = "homeController", e.debug("Just started home controller!"), f.username = null, 
-        f.email = null, f.password = null, f.errorMessage = null, f.login = function(a, b, c) {
-            c.debug("Hello"), b.login(f.email, f.password).then(function(b) {
-                return b ? (b && $routeParams && $routeParams.redirect && (path += $routeParams.redirect), 
-                void a.path(path)) : void (f.errorMessage = "Unable to login");
+        function f(b, e, f) {
+            var h = "00000000-0000-0000-0000-000000000000";
+            a.login(h, b, e, f).then(function(a) {
+                d.debug("Closing dialog 1 " + a + g.signUpDialog), c.closeAll();
             });
-        }, f.showsignup = function() {
-            b.open({
+        }
+        var g = this;
+        g.title = "homeController", d.debug("Just started home controller!"), g.username = null, 
+        g.email = null, g.password = null, g.errorMessage = null, g.signUpDialog = null, 
+        g.login = function(a, b, c) {
+            f(g.username, g.email, g.password);
+        }, g.showsignup = function() {
+            g.signUpDialog = c.open({
                 template: "pages/signup.html",
                 plain: !1,
                 className: "ngdialog-theme-default",
-                scope: c,
+                scope: e,
                 controller: "HomeController",
                 controllerAs: "vm"
             });
         };
     }
-    angular.module("wardenapp").controller("HomeController", a), a.$inject = [ "$location", "ngDialog", "$scope", "authService", "$log" ];
+    angular.module("wardenapp").controller("HomeController", a), a.$inject = [ "authService", "$location", "ngDialog", "$log", "$scope" ];
 }(), function() {
     "use strict";
     function a(a, b, c, d) {
@@ -103,37 +107,35 @@
     angular.module("wardenapp").controller("SiteQueryController", a), a.$inject = [ "siteService", "$log", "$window", "$scope" ];
 }(), function() {
     "use strict";
-    function a(a) {
-        function b(a) {
-            d.user.isAuthenticated = a, $rootScope.$broadcast("loginStatusChanged", a);
+    function a(a, b) {
+        function c(a) {
+            e.user.isAuthenticated = a;
         }
-        var c = "/api/dataservice/", d = {
-            loginPath: "/login",
+        var d = "/api/account/", e = {
+            loginPath: "/register",
             user: {
                 isAuthenticated: !1,
                 roles: null
             }
         };
-        return d.login = function(d, e) {
-            return a.post(c + "login", {
-                userLogin: {
-                    userName: d,
-                    password: e
-                }
+        return e.login = function(e, f, g, h) {
+            return b.debug("Register user name " + f), a.post(d + "register", {
+                Id: e,
+                UserName: f,
+                Email: g,
+                Password: h
             }).then(function(a) {
-                var c = a.data.status;
-                return b(c), c;
+                var b = a.status;
+                return c(b), b;
             });
-        }, d.logout = function() {
-            return a.post(c + "logout").then(function(a) {
-                var c = !a.data.status;
-                return b(c), c;
+        }, e.logout = function() {
+            return a.post(d + "logout").then(function(a) {
+                var b = !a.data.status;
+                return c(b), b;
             });
-        }, d.redirectToLogin = function() {
-            $rootScope.$broadcast("redirectToLogin", null);
-        }, d;
+        }, e;
     }
-    angular.module("wardenapp").factory("authService", a), a.$inject = [ "$http" ];
+    angular.module("wardenapp").factory("authService", a), a.$inject = [ "$http", "$log" ];
 }(), function() {
     "use strict";
     function a(a, b) {
