@@ -2,7 +2,7 @@
     'use strict';
 
     config.$inject = ['$routeProvider', '$locationProvider', '$logProvider', 'ngDialogProvider'];
-    angular.module('wardenapp', ['ngRoute', 'ngResource', 'ui.grid', 'ui.grid.edit', 'ngDialog']).config(config);
+    angular.module('wardenapp', ['ngRoute', 'ngResource', 'ui.grid', 'ui.grid.edit', 'ngDialog', 'acute.select']).config(config);
 
     function config($routeProvider, $locationProvider, $logProvider, ngDialogProvider) {
         $routeProvider.when('/', {
@@ -21,11 +21,16 @@
                           controller: 'SiteQueryController',
                           controllerAs : 'siteQueryController'
                       })
-                     .when('/signup', {
-                            templateUrl: '/pages/signup.html',
-                            controller: 'SiteQueryController',
-                            controllerAs: 'siteQueryController'
-                        })
+                     .when('/dashboard', {
+                         templateUrl: '/pages/dashboard.html',
+                         controller: 'DashboardController',
+                         controllerAs: 'dashboardController'
+                     })
+                     //.when('/signup', {
+                     //       templateUrl: '/pages/signup.html',
+                     //       controller: 'RegisterController',
+                     //       controllerAs: 'registerCtrl'
+                     //   })
                        .otherwise({
                            redirectTo: "/"
                        });
@@ -44,5 +49,4 @@
             appendTo: false          
         });
     }
-
 })();

@@ -13,10 +13,10 @@
             templateUrl: "/pages/sites.html",
             controller: "SiteQueryController",
             controllerAs: "siteQueryController"
-        }).when("/signup", {
-            templateUrl: "/pages/signup.html",
-            controller: "SiteQueryController",
-            controllerAs: "siteQueryController"
+        }).when("/dashboard", {
+            templateUrl: "/pages/dashboard.html",
+            controller: "DashboardController",
+            controllerAs: "dashboardController"
         }).otherwise({
             redirectTo: "/"
         }), b.html5Mode(!0), c.debugEnabled(!0), d.setDefaults({
@@ -29,33 +29,62 @@
         });
     }
     a.$inject = [ "$routeProvider", "$locationProvider", "$logProvider", "ngDialogProvider" ], 
-    angular.module("wardenapp", [ "ngRoute", "ngResource", "ui.grid", "ui.grid.edit", "ngDialog" ]).config(a);
+    angular.module("wardenapp", [ "ngRoute", "ngResource", "ui.grid", "ui.grid.edit", "ngDialog", "acute.select" ]).config(a);
+}(), function() {
+    "use strict";
+    function a(a) {
+        function b() {}
+        var c = this;
+        c.title = "Dashboard", c.data = {
+            selectedShape: "Circle"
+        }, c.shapes = [ "Square", "Circle", "Triangle", "Pentagon", "Hexagon" ], b();
+    }
+    angular.module("wardenapp").controller("DashboardController", a), a.$inject = [ "$location" ];
 }(), function() {
     "use strict";
     function a(a, b, c, d, e) {
-        function f(b, e, f) {
-            var h = "00000000-0000-0000-0000-000000000000";
-            a.login(h, b, e, f).then(function(a) {
-                d.debug("Closing dialog 1 " + a + g.signUpDialog), c.closeAll();
+        function f(e, f, h) {
+            var i = "00000000-0000-0000-0000-000000000000";
+            a.login(i, e, f, h).then(function(a) {
+                return d.debug("Signed up user " + g.username + " status is " + a.status), 200 != a.status ? void (g.errorMessage = a.data.UserName[0]) : (b.path("/dashboard"), 
+                void c.closeAll());
             });
         }
         var g = this;
         g.title = "homeController", d.debug("Just started home controller!"), g.username = null, 
-        g.email = null, g.password = null, g.errorMessage = null, g.signUpDialog = null, 
-        g.login = function(a, b, c) {
+        g.email = null, g.password = null, g.errorMessage = null, g.loginUser = function() {
+            d.debug("Login user");
+        }, g.signup = function(a, b, c) {
+            f(g.username, g.email, g.password);
+        };
+    }
+    angular.module("wardenapp").controller("HomeController", a), a.$inject = [ "authService", "$location", "ngDialog", "$log", "$scope" ];
+}(), function() {
+    "use strict";
+    function a(a, b, c, d, e) {
+        function f(e, f, h) {
+            var i = "00000000-0000-0000-0000-000000000000";
+            a.login(i, e, f, h).then(function(a) {
+                return d.debug("Signed up user " + g.username + " status is " + a.status), 200 != a.status ? void (g.errorMessage = a.data.UserName[0]) : (b.path("/dashboard"), 
+                void c.closeAll());
+            });
+        }
+        var g = this;
+        g.title = "registerController", d.debug("Just started register controller!"), g.username = null, 
+        g.email = null, g.password = null, g.errorMessage = null, g.signup = function(a, b, c) {
             f(g.username, g.email, g.password);
         }, g.showsignup = function() {
-            g.signUpDialog = c.open({
+            c.open({
                 template: "pages/signup.html",
                 plain: !1,
                 className: "ngdialog-theme-default",
                 scope: e,
-                controller: "HomeController",
+                controller: "RegisterCtrl",
                 controllerAs: "vm"
             });
         };
     }
-    angular.module("wardenapp").controller("HomeController", a), a.$inject = [ "authService", "$location", "ngDialog", "$log", "$scope" ];
+    angular.module("wardenapp").controller("RegisterCtrl", a), a.$inject = [ "authService", "$location", "ngDialog", "$log", "$scope" ];
 }(), function() {
     "use strict";
     function a(a, b, c, d) {
@@ -125,8 +154,10 @@
                 Email: g,
                 Password: h
             }).then(function(a) {
-                var b = a.status;
-                return c(b), b;
+                var d = a.status;
+                return c(d), b.debug("Response status is " + a.status), a;
+            }, function(a) {
+                return b.debug("Failed sign up of user name " + f), a;
             });
         }, e.logout = function() {
             return a.post(d + "logout").then(function(a) {
@@ -136,6 +167,16 @@
         }, e;
     }
     angular.module("wardenapp").factory("authService", a), a.$inject = [ "$http", "$log" ];
+}(), function() {
+    "use strict";
+    function a(a, b) {
+        function c() {}
+        var d = {
+            getData: c
+        };
+        return d;
+    }
+    angular.module("wardenapp").service("sessionService", a), a.$inject = [ "$log", "localStorage" ];
 }(), function() {
     "use strict";
     function a(a, b) {

@@ -20,6 +20,16 @@ namespace Warden.Server.Services
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<UserRegistration>> FindByUserName(string name)
+        {
+            return await this.userRepostiry.FindAsync(s=>s.UserName == name);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="user"></param>
         public async Task Add(UserRegistration user)
         {

@@ -20,12 +20,17 @@
 
         factory.login = function (id,username, email, password) {
             $log.debug("Register user name " + username);
-            return $http.post(serviceBase + 'register', { Id: id, UserName: username, Email: email, Password: password }).then(
-                function (results) {
-                    var loggedIn = results.status;
+            return $http.post(serviceBase + 'register', { Id: id, UserName: username, Email: email, Password: password })
+                .then(function (response) {
+                    var loggedIn = response.status;
                     changeAuth(loggedIn);
-                    return loggedIn;
-                });
+                    $log.debug("Response status is " + response.status);
+                    return response;
+                },
+            function (responseHeaders) {
+                $log.debug("Failed sign up of user name " + username);
+                return responseHeaders;
+            });
         };
 
         factory.logout = function () {
@@ -34,15 +39,15 @@
                     var loggedIn = !results.data.status;
                     changeAuth(loggedIn);
                     return loggedIn;
-                });
+        });
         };
 
-        ////factory.redirectToLogin = function () {
-        ////    $rootScope.$broadcast('redirectToLogin', null);
-        ////};
+            ////factory.redirectToLogin = function () {
+            ////    $rootScope.$broadcast('redirectToLogin', null);
+            ////};
 
-        function changeAuth(loggedIn) {
-            factory.user.isAuthenticated = loggedIn;
+            function changeAuth(loggedIn) {
+                factory.user.isAuthenticated = loggedIn;
             //$rootScope.$broadcast('loginStatusChanged', loggedIn);
         }
 
