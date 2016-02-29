@@ -1,6 +1,6 @@
 ﻿<div class="container-fluid">
     <div class="row">
-        <div class="hero-unit">
+        <div class="hero-unit" ng-controller="AuthenticaitonCtrl as authCtrl">
             <nav class="navbar navbar-default custom-navbar">
                 <div class="container-fluid">
                     <div class="navbar-header" style="height:150%;">
@@ -20,13 +20,14 @@
                             <li class="divider"><a href="sites"><i class="fa fa-shield"></i><b>Sites</b></a></li>
                             <li class="divider"><a href="about"><i class="fa fa-shield"></i><b>About</b></a></li>
                             <li class="divider"><a href="contact"><i class="fa fa-comment"></i><b>Contact</b></a></li>
-                            <li class="divider"><a ng-click="homeCtrl.loginUser()"><i class="fa fa-comment"></i><b>Login</b></a></li>
+                            <li class="divider"><a ng-click="authCtrl.loginUser()" ng-show="!authCtrl.isUserLoggedIn"><i class="fa fa-comment"></i><b>Login</b></a></li>
+                            <li class="divider"><a ng-click="authCtrl.logout()" ng-show="authCtrl.isUserLoggedIn"><i class="fa fa-comment"></i><b>Logout</b></a></li>
                         </ul>
                     </div> <!--.nav collapse-->
                 </div> <!--.container-fluid-->
             </nav>
 
-            <div class="row" ng-controller="RegisterCtrl as registerCtrl">
+            <div class="row">
                 <div class="col-md-6" style="padding-top:50px; padding-left:10%;">
                     <div class="row text-left" style="width:100%;">
                         <h1>
@@ -39,7 +40,7 @@
                             Warden prepares your site and keeps people aware<br />
                             of incidences to help react quickly and evacuate.
                         </p>
-                        <a class="btn btn-primary" ng-click='registerCtrl.showsignup()' data-track="Sign Up"> Sign Up </a>
+                        <a class="btn btn-primary" ng-click='authCtrl.showsignup()' data-track="Sign Up"> Sign Up </a>
                     </div>
                     <div class="col-md-6"></div>
                 </div>

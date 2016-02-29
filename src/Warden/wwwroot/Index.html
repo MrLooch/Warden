@@ -20,6 +20,7 @@
     <link href="css/footer-distributed-with-address-and-phones.css" rel="stylesheet">    
     <link href="lib/acute-select/acute/acute.select/acute.select.css" rel="stylesheet" />
     <link href="lib/acute-select/acute/acute.select/template/acute.select.htm" rel="stylesheet" />
+    <link href="lib/toastr/toastr.min.css" rel="stylesheet" />
 
     <link href="css/site.css" rel="stylesheet">    
     <title>Warden </title>
@@ -33,52 +34,9 @@
         <!-- this is where content will be injected -->
         <div ng-view></div>
     </div>
+    <div ng-include="'pages/footer.html'"></div>   
+   
 
-    <footer class="footer-distributed">
-        <div class="footer-left">
-            <h3>Company<span>logo</span></h3>
-            <p class="footer-links">
-                <a href="#">Home</a>
-                ·
-                <a href="#">Blog</a>
-                ·
-                <a href="#">Pricing</a>
-                ·
-                <a href="#">About</a>
-                ·
-                <a href="#">Faq</a>
-                ·
-                <a href="#">Contact</a>
-            </p>
-            <p class="footer-company-name">Company Name &copy; 2015</p>
-        </div>
-        <div class="footer-center">
-            <div>
-                <i class="fa fa-map-marker"></i>
-                <p><span>21 Revolution Street</span> Paris, France</p>
-            </div>
-            <div>
-                <i class="fa fa-phone"></i>
-                <p>+1 555 123456</p>
-            </div>
-            <div>
-                <i class="fa fa-envelope"></i>
-                <p><a href="mailto:support@company.com">support@company.com</a></p>
-            </div>
-        </div>
-        <div class="footer-right">
-            <p class="footer-company-about">
-                <span>About the company</span>
-                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-            </p>
-            <div class="footer-icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-            </div>
-        </div>
-    </footer>
     <!-- 3rd party libraries -->    
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.min.js"></script>
@@ -88,7 +46,8 @@
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="lib/acute-select/acute/acute.select/acute.select.js"></script>
-    
+    <script src="lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="lib/toastr/toastr.min.js"></script>
     
     <!-- Load app main script and Angularjs minified controllers -->
     <script src="app.js"></script>   

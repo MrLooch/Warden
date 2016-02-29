@@ -49,17 +49,5 @@
         vm.signup = function ($location, authService, $log) {
             loginWithService(vm.username, vm.email, vm.password);            
         }
-
-        //// Set the create new site visiblity state
-        //vm.showsignup = function () {
-        //    ngDialog.open({
-        //        template: 'pages/signup.html',
-        //        plain: false,
-        //        className: 'ngdialog-theme-default',
-        //        scope: $scope,
-        //        controller: 'HomeController',
-        //        controllerAs : 'vm'
-        //    });
-        //}
     }
 })();

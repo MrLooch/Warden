@@ -59,6 +59,44 @@ namespace Warden.server.WebApi
             }          
             // TODO: Set new id            
             return new HttpOkResult();
-        }       
+        }
+
+        // POST api/values
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Post([FromBody]UserLogin loginDetails)
+        {
+            if (!ModelState.IsValid)
+            {
+                //return HttpBadRequest.HttpUnauthorized;
+                return HttpBadRequest();
+            }
+
+            try
+            {
+                var userRegistration = await accountService.FindByEmail(loginDetails.Email);
+
+                if (userRegistration.Count() != 1)
+                {
+                    ModelState.AddModelError("Email", "Duplicate email accounts");
+                    return new BadRequestObjectResult(ModelState);
+                }
+                else
+                {
+                    var user = userRegistration.First();
+                    if (user.Password != loginDetails.Password)
+                    {
+                        ModelState.AddModelError("Password", "Incorrect passowrd");
+                        return new BadRequestObjectResult(ModelState);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            // TODO: Set new id            
+            return new HttpOkResult();
+        }
     }
 }
