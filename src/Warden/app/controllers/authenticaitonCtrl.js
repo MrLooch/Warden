@@ -71,6 +71,8 @@
 
         function logoutUser() {
             authService.logout();
+            $location.path('/');
+
         }
 
         // Send login registration details

@@ -67,13 +67,9 @@
 
         // Logout
         factory.logout = function () {
-            return $http.post(serviceBase + 'logout').then(
-                function (results) {
-                    factory.clearCache();
-                    return results;
-                });
+            factory.clearCache();                    
         };
-        ;
+        
         // Store login credentials into local storage
         factory.storeUser = function (email, password) {
 

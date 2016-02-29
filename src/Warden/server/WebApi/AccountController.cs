@@ -51,12 +51,12 @@ namespace Warden.server.WebApi
                 {
                     ModelState.AddModelError("UserName", errorMessage);
                     return new BadRequestObjectResult(ModelState);
-                }                                
+                }
             }
-            catch(Exception)
+            catch (Exception)
             {
 
-            }          
+            }
             // TODO: Set new id            
             return new HttpOkResult();
         }

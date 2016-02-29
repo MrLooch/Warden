@@ -68,7 +68,7 @@
             });
         }
         function h() {
-            a.logout();
+            a.logout(), b.path("/");
         }
         var i = this;
         i.title = "registerController", d.debug("Just started register controller!"), i.username = null, 
@@ -243,9 +243,7 @@
                 return b.debug("Failed sign up of user name " + d), h.logout(), a;
             });
         }, h.logout = function() {
-            return a.post(g + "logout").then(function(a) {
-                return h.clearCache(), a;
-            });
+            h.clearCache();
         }, h.storeUser = function(a, b) {
             c.set("authorizationData", {
                 Email: a
