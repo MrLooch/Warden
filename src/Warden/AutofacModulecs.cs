@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Core;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace Warden
 {
     public class AutofacModule : Module
     {
+        private Serilog.ILogger logger;
+        public AutofacModule(Serilog.ILogger logger)
+        {
+            this.logger = logger;
+        }
         protected override void Load(ContainerBuilder builder)
         {
             ConnectionConfig connectionConfig = new ConnectionConfig()
@@ -46,7 +52,9 @@ namespace Warden
                 .Register(c => new AccountService(userRepo))
                 .As<IAccountService>()
                 .InstancePerLifetimeScope();
-
+            builder.Register<ILogger>(c => this.logger)
+                .As<ILogger>()
+                .SingleInstance();
             //builder.RegisterType<SiteService>()
             //    .WithParameter(
             //        new ResolvedParameter(

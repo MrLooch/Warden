@@ -8,7 +8,7 @@
   "dependencies": {
     "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
     "Warden.Core.Domain": "1.0.0-*",
-    "MongoDB.Driver": "2.0.0",
+    "MongoDB.Driver" :  "2.2.3",
     "Warden.DataModel": "1.0.0-*"    
   },
 

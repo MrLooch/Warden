@@ -15,6 +15,8 @@ using Microsoft.AspNet.Routing;
 using Warden.Server.Services;
 using Warden.Server.Services.CommandHandler;
 using Warden.Server.Services.Command;
+using Microsoft.AspNet.Authorization;
+
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Warden.server.WebApi
@@ -23,17 +25,23 @@ namespace Warden.server.WebApi
     public class AccountController : Controller
     {
         private IAccountService accountService;
+        private readonly Serilog.ILogger logger;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService,
+                                 Serilog.ILogger logger)
         {
             this.accountService = accountService;
+            this.logger = logger;
         }
 
         // POST api/values
         [HttpPost]
+        [AllowAnonymous]
         [Route("Register")]
         public async Task<IActionResult> Post([FromBody]UserRegistration registration)
         {
+            this.logger.Information("Registeration for {0} by {1}", registration.Email);
+
             if (!ModelState.IsValid)
             {
                 //return HttpBadRequest.HttpUnauthorized;

@@ -24,13 +24,21 @@ using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin.Builder;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Builder.Extensions;
-
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Warden
 {
     public class Startup
     {
+        private Serilog.ILogger logger;
+        private IHostingEnvironment hostingEnv;
 
+        public Startup(IHostingEnvironment env)
+        {
+            this.hostingEnv = env;
+        }
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -39,10 +47,23 @@ namespace Warden
             //services.AddAuthentication()
             // Create the Autofac container builder.
             var builder = new ContainerBuilder();
+
+            var logConsole = new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
+            var appLoc = this.hostingEnv.MapPath("APP_DATA");
+            appLoc = appLoc.ToString();
+            var configLogger = new LoggerConfiguration()
+               .MinimumLevel.Debug()
+               .WriteTo.Logger(logConsole)
+               .WriteTo.RollingFile( appLoc + "/Log-{Date}.txt",
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {SourceContext} [{Level}] {Message}{NewLine}{Exception}");
+            this.logger = configLogger.CreateLogger();
             
+
             // Add any Autofac modules or registrations.
-            builder.RegisterModule(new AutofacModule());
-            
+            builder.RegisterModule(new AutofacModule(this.logger));
+
             // Populate the services.            
             builder.Populate(services);
             
@@ -65,9 +86,15 @@ namespace Warden
             //    LoginPath = new PathString("Account/LogOn")
             //});
         }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app,
+                             IHostingEnvironment env,
+                             ILoggerFactory loggerFactory)
         {
+                   
+            loggerFactory.AddSerilog(this.logger);
+
             ConfigureOwin(app);
 
             // Add cookie-based authentication to the request pipeline.
