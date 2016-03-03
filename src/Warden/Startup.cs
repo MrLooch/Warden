@@ -32,11 +32,9 @@ namespace Warden
     public class Startup
     {
         private Serilog.ILogger logger;
-        private IHostingEnvironment hostingEnv;
 
-        public Startup(IHostingEnvironment env)
+        public Startup()
         {
-            this.hostingEnv = env;
         }
         
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -47,22 +45,9 @@ namespace Warden
             //services.AddAuthentication()
             // Create the Autofac container builder.
             var builder = new ContainerBuilder();
-
-            var logConsole = new LoggerConfiguration()
-            .WriteTo.Console()
-            .CreateLogger();
-            var appLoc = this.hostingEnv.MapPath("APP_DATA");
-            appLoc = appLoc.ToString();
-            var configLogger = new LoggerConfiguration()
-               .MinimumLevel.Debug()
-               .WriteTo.Logger(logConsole)
-               .WriteTo.RollingFile( appLoc + "/Log-{Date}.txt",
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {SourceContext} [{Level}] {Message}{NewLine}{Exception}");
-            this.logger = configLogger.CreateLogger();
             
-
             // Add any Autofac modules or registrations.
-            builder.RegisterModule(new AutofacModule(this.logger));
+            builder.RegisterModule(new AutofacModule());
 
             // Populate the services.            
             builder.Populate(services);
@@ -92,7 +77,19 @@ namespace Warden
                              IHostingEnvironment env,
                              ILoggerFactory loggerFactory)
         {
-                   
+
+            var logConsole = new LoggerConfiguration()
+         .WriteTo.Console()
+         .CreateLogger();
+
+            var appLoc = env.MapPath("APP_DATA");
+            appLoc = appLoc.ToString();
+            var configLogger = new LoggerConfiguration()
+               .MinimumLevel.Debug()
+               .WriteTo.Logger(logConsole)
+               .WriteTo.RollingFile(appLoc + "/Log-{Date}.txt",
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {SourceContext} [{Level}] {Message}{NewLine}{Exception}");
+            this.logger = configLogger.CreateLogger();
             loggerFactory.AddSerilog(this.logger);
 
             ConfigureOwin(app);

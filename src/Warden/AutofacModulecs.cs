@@ -16,11 +16,6 @@ namespace Warden
 {
     public class AutofacModule : Module
     {
-        private Serilog.ILogger logger;
-        public AutofacModule(Serilog.ILogger logger)
-        {
-            this.logger = logger;
-        }
         protected override void Load(ContainerBuilder builder)
         {
             ConnectionConfig connectionConfig = new ConnectionConfig()
@@ -51,16 +46,7 @@ namespace Warden
             builder
                 .Register(c => new AccountService(userRepo))
                 .As<IAccountService>()
-                .InstancePerLifetimeScope();
-            builder.Register<ILogger>(c => this.logger)
-                .As<ILogger>()
-                .SingleInstance();
-            //builder.RegisterType<SiteService>()
-            //    .WithParameter(
-            //        new ResolvedParameter(
-            //            (pi, ctx) => pi.ParameterType == typeof(IRepository<Site>),
-            //            (pi, ctx) => ctx.Resolve<RepositoryMongoDB<Site>>()));
-
+                .InstancePerLifetimeScope();            
         }
     }
 }
