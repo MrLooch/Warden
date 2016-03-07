@@ -29,7 +29,7 @@ using Serilog;
 
 namespace Warden
 {
-    public class Startup
+    public partial class Startup
     {
         private Serilog.ILogger logger;
 
@@ -40,7 +40,9 @@ namespace Warden
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
-        {            
+        {
+            authenticationConfigureServices(services);
+
             services.AddMvc();
             //services.AddAuthentication()
             // Create the Autofac container builder.
@@ -56,51 +58,54 @@ namespace Warden
             var container = builder.Build();
             
             // Resolve and return the service provider.            
+
             return container.ResolveOptional<IServiceProvider>();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="app"></param>
-        public void ConfigureOwin(IApplicationBuilder app)
+        /// <param name="env"></param>
+        /// <param name="loggerFactory"></param>
+        private void configLogger(IHostingEnvironment env,
+                                  ILoggerFactory loggerFactory)
         {
-            
-            //app.UseCookieAuthentication(new CookieAuthenticationOptions
-            //{
-            //    LoginPath = new PathString("Account/LogOn")
-            //});
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,
-                             IHostingEnvironment env,
-                             ILoggerFactory loggerFactory)
-        {
-
             var logConsole = new LoggerConfiguration()
-         .WriteTo.Console()
-         .CreateLogger();
+              .WriteTo.Console()
+              .CreateLogger();
 
-            var appLoc = env.MapPath("APP_DATA");
-            appLoc = appLoc.ToString();
+            var appLoc = env.MapPath("APP_DATA").ToString();
+            
             var configLogger = new LoggerConfiguration()
                .MinimumLevel.Debug()
                .WriteTo.Logger(logConsole)
                .WriteTo.RollingFile(appLoc + "/Log-{Date}.txt",
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {SourceContext} [{Level}] {Message}{NewLine}{Exception}");
+
             this.logger = configLogger.CreateLogger();
+
             loggerFactory.AddSerilog(this.logger);
+        }
 
-            ConfigureOwin(app);
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="loggerFactory"></param>
+        public void Configure(IApplicationBuilder app,
+                             IHostingEnvironment env,
+                             ILoggerFactory loggerFactory)
+        {
 
-            // Add cookie-based authentication to the request pipeline.
-            //app.UseIdentity();
+            configLogger(env, loggerFactory);
 
             app.UseIISPlatformHandler();
+
+            ConfigureStoreAuthentication(app);
+
             //Most websites will need static files, but default documents and
             // directory browsing are typically not used.
-            // Default files
             app.UseDefaultFiles();
             
             // Add static files to the request pipeline

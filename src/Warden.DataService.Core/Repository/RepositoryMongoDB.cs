@@ -80,7 +80,9 @@ namespace Warden.DataService.Core.Repository
                 {
                     IMongoCollection<T> entities = getCollection();
 
-                    await entities.InsertOneAsync(entity, cancellationToken);
+                    await entities.InsertOneAsync(entity, 
+                                                  new InsertOneOptions() { BypassDocumentValidation = false },
+                                                  cancellationToken);
 
 
                 }

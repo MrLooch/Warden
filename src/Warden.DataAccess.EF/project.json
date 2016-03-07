@@ -1,23 +1,24 @@
-{
+﻿{
   "version": "1.0.0-*",
-  "description": "Warden.DataModel Class Library",
+  "description": "Warden.DataAccess.EF Class Library",
   "authors": [ "luciano.gualano" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
 
   "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
-    "Microsoft.AspNet.Identity" : "3.0.0-rc1-final",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"  
+    "EntityFramework.SqlServer": "7.0.0-beta8",
+    "Warden.DataModel": ""
   },
 
   "frameworks": {
     "dnx451": {
       "frameworkAssemblies": {
         "System.ComponentModel.DataAnnotations": "4.0.0.0",
-        "System.Data": "4.0.0.0"
+        "System.Data.Entity": "4.0.0.0"
+
       }
     }
   }
+
 }
