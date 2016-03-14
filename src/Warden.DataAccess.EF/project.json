@@ -6,18 +6,20 @@
   "projectUrl": "",
   "licenseUrl": "",
 
-  "dependencies": {
-    "EntityFramework.SqlServer": "7.0.0-beta8",
-    "Warden.DataModel": ""
-  },
+    "dependencies": {        
+    },
 
   "frameworks": {
     "dnx451": {
-      "frameworkAssemblies": {
-        "System.ComponentModel.DataAnnotations": "4.0.0.0",
-        "System.Data.Entity": "4.0.0.0"
-
-      }
+        "frameworkAssemblies": {
+            "System.ComponentModel.DataAnnotations": "4.0.0.0",
+            "System.Data.Entity": "4.0.0.0"
+        },
+        "dependencies": {
+            "Warden.DataModel": "1.0.0-*",
+            "Warden.Infrastructure.Core": "1.0.0-*",
+            "Warden.Core.Domain": "1.0.0-*"
+        }
     }
   }
 

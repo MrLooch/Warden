@@ -8,6 +8,6 @@ namespace Warden.Server.Services.Command
 {
     public class CreateUserCommand : ICommand<string>
     {
-        public UserRegistration UserDetails {get;set;}
+        public UserRegistrationDTO UserDetails {get;set;}
     }
 }

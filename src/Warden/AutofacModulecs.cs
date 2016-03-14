@@ -32,7 +32,7 @@ namespace Warden
                 .As<IRepository<Site>>()
                 .InstancePerLifetimeScope();
 
-            IRepository<UserRegistration> userRepo = new RepositoryMongoDB<UserRegistration>(connectionConfig, "Users");
+            IRepository<UserRegistrationDTO> userRepo = new RepositoryMongoDB<UserRegistrationDTO>(connectionConfig, "Users");
             builder
                 .Register(c => siteRepo)
                 .As<IRepository<Site>>()
@@ -43,10 +43,10 @@ namespace Warden
                 .As<ISiteService>()
                 .InstancePerLifetimeScope();
 
-            builder
-                .Register(c => new AccountService(userRepo))
-                .As<IAccountService>()
-                .InstancePerLifetimeScope();            
+            //builder
+            //    .Register(c => new AccountService(userRepo))
+            //    .As<IAccountService>()
+            //    .InstancePerLifetimeScope();            
         }
     }
 }

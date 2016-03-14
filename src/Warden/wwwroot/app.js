@@ -63,8 +63,8 @@
         function g(e, f) {
             var g = "00000000-0000-0000-0000-000000000000";
             a.login(g, e, f).then(function(a) {
-                return d.debug("Logged in user " + e + " status is " + a.status), 200 != a.status ? void (i.errorMessage = a.data.UserName[0]) : (i.isUserLoggedIn = !0, 
-                b.path("/dashboard"), void c.closeAll());
+                d.debug("Logged in user " + e + " status is " + a.status), i.isUserLoggedIn = !0, 
+                b.path("/dashboard"), c.closeAll();
             });
         }
         function h() {
@@ -136,10 +136,10 @@
             f.getSites();
         }
         var f = this;
-        f.newSite = {}, f.newSite.Id = "00000000-0000-0000-0000-000000000000", f.sites = {}, 
-        d.Delete = function(a) {
+        f.newSite = {}, f.newSite.Id = "00000000-0000-0000-0000-000000000000", d.Delete = function(a) {
             b.debug("'Deleting row " + a), f.deleteSite(a);
-        }, f.gridOptions = {
+        }, d.sites = {}, f.gridOptions = {
+            data: "sites",
             columnDefs: [ {
                 field: "Name",
                 displayName: "Name"
@@ -169,15 +169,30 @@
             });
         }, f.getSites = function() {
             b.message = "get all sites", a.getSites().then(function(a) {
-                f.gridOptions.data = a.data, f.sites = a.data;
+                d.sites = a.data;
             }, function(a) {
                 c.alert(a.message);
             });
         }, f.insertSite = function(c) {
-            b.message = "insert new site " + c.Name, a.insertSite(c), f.sites.push(c);
+            b.message = "insert new site " + c.Name, a.insertSite(c), d.sites.push(c);
         }, e();
     }
     angular.module("wardenapp").controller("SiteQueryController", a), a.$inject = [ "siteService", "$log", "$window", "$scope" ];
+}(), function() {
+    "use strict";
+    function a() {
+        function a(a, b, c) {}
+        var b = {
+            link: a,
+            restrict: "A",
+            templateUrl: "pages/navbar.html",
+            controller: "AuthenticaitonCtrl",
+            controllerAs: "authCtrl",
+            scope: {}
+        };
+        return b;
+    }
+    angular.module("wardenapp").directive("wardenNavbar", a);
 }(), function() {
     "use strict";
     angular.module("common.core", [ "ngRoute" ]);

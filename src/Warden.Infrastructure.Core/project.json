@@ -1,0 +1,26 @@
+﻿{
+    "version": "1.0.0-*",
+    "description": "Warden.Infrastructure.Core Class Library",
+    "authors": [ "luciano.gualano" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+
+     "dependencies": {
+    },
+
+    "frameworks": {
+        "dnx451": {
+            "frameworkAssemblies": {
+                "Microsoft.CSharp": "4.0.0.0",
+                "System.Collections": "4.0.0.0",
+                "System.Linq": "4.0.0.0",
+                "System.Runtime": "4.0.10.0",
+                "System.Threading": "4.0.0.0"                
+            },
+            "dependencies": {
+                "Warden.DataModel": "1.0.0-*"
+            }
+        }
+    }
+}

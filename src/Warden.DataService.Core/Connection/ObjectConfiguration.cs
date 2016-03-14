@@ -47,9 +47,9 @@ namespace Warden.DataService.Core.Connection
                 });
             }
 
-            if (!BsonClassMap.IsClassMapRegistered(typeof(UserRegistration)))
+            if (!BsonClassMap.IsClassMapRegistered(typeof(UserRegistrationDTO)))
             {
-                BsonClassMap.RegisterClassMap<UserRegistration>(w =>
+                BsonClassMap.RegisterClassMap<UserRegistrationDTO>(w =>
                 {
                     w.AutoMap();
                     w.SetIgnoreExtraElements(true);

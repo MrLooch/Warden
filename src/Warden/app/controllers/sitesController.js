@@ -18,16 +18,16 @@
 
         // Remove this at a later state
         vm.newSite.Id = "00000000-0000-0000-0000-000000000000";        
-        vm.sites = {};
 
         // Delete the site row from the grid and send message to server
         $scope.Delete = function (row) {
             $log.debug("'Deleting row " + row);
             vm.deleteSite(row);
         };
+        $scope.sites = {};
 
         vm.gridOptions = {
-            //data: 'sites',
+            data: 'sites',
             columnDefs: [               
                 { field: 'Name', displayName: 'Name' },
                 { field: 'Address', displayName: 'Address' },
@@ -89,8 +89,9 @@
             // Use the site service to get all the sites
             siteService.getSites()
             .then(function (results) {
-                vm.gridOptions.data = results.data;
-                vm.sites = results.data;
+               // vm.sites = results.data;
+                $scope.sites = results.data;
+                
             }, function (error) {
                 $window.alert(error.message);
             });
@@ -107,7 +108,7 @@
             siteService.insertSite(site);
 
             // Add the new site to the client side collection
-            vm.sites.push(site);
+            $scope.sites.push(site);
         }
 
          // Initialise the controller

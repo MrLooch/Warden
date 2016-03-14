@@ -1,65 +1,56 @@
-﻿{
-  "version": "1.0.0-*",
-  "compilationOptions": {
-    "emitEntryPoint": true
-  },
+{
+    "webroot": "wwwroot",
+    "userSecretsId": "Warden",
+    "version": "1.0.0-*",
+    "compilationOptions": {
+        "emitEntryPoint": true
+    },
 
-  "dependencies": {
-    "Autofac": "4.0.0-rc1-177",
-    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
-    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
-    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
-    "Warden.Core.Domain": "1.0.0-*",
-    "Warden.DataModel": "1.0.0-*",
-    "Warden.DataService.Core": "1.0.0-*",
-    "Warden.DataAccess.EF": "1.0.0-*",
-    "Microsoft.AspNet.Authentication": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
-    "Owin": "1.0.0",
-    "Microsoft.Owin": "3.0.1",
-    "Microsoft.Owin.Host.SystemWeb": "3.0.1",
-    "Microsoft.Owin.Security": "3.0.1",
-    "Microsoft.Owin.Security.Cookies": "3.0.1",
-    "Microsoft.Owin.Security.OAuth": "3.0.1",
-    "Warden.Services.Site": "1.0.0-*",
-    "Microsoft.AspNet.Identity.Owin": "2.2.1",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
-    "Microsoft.Framework.Logging": "1.0.0-beta8",
-    "Serilog.Framework.Logging": "1.0.0-rc1-final-10078",
-    "EntityFramework.Commands": "7.0.0-rc1-final",
-    "EntityFramework.SqlServer": "7.0.0-beta8",
+    "dependencies": {
+        "Autofac": "4.0.0-rc1-177",
+        "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+        "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+        "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+        "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-rc1-final",
+        "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
+        "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
 
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Authentication.JwtBearer": "1.0.0-rc1-final",
-    "AspNet.Security.OpenIdConnect.Server": "1.0.0-beta4",
-    "Microsoft.AspNet.Authentication.OpenIdConnect": "1.0.0-rc1-final"
+        "Microsoft.Framework.Logging": "1.0.0-beta8",
+        "Serilog.Framework.Logging": "1.0.0-rc1-final-10078",
 
+        "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+        "EntityFramework.MicrosoftSqlServer.Design": "7.0.0-rc1-final",
+        "EntityFramework.Commands": "7.0.0-rc1-final",
 
-  },
+        "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc1-final",
+        "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final"
+    },
 
-  "Data": {
-    "DefaultConnection": {
-      "ConnectionString": "Server=(localdb)\\v11.0;;Database=Warden;Trusted_Connection=True;MultipleActiveResultSets=true"
-    }
-  },
+    "commands": {
+        "web": "Microsoft.AspNet.Server.Kestrel",
+        "ef": "EntityFramework.Commands"
+    },
 
-  "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel",
-    "ef": "EntityFramework.Commands"
-  },
+    "frameworks": {
+        "dnx451": {
+            "dependencies": {
+                "Warden.Core.Domain": "1.0.0-*",
+                "Warden.DataModel": "1.0.0-*",
+                "Warden.DataService.Core": "1.0.0-*",
+                "Warden.DataAccess.EF": "1.0.0-*",
+                "Warden.Services.Site": "1.0.0-*"
+            }
+        }
+    },
 
-  "frameworks": {
-    "dnx451": { }
-  },
-
-  "exclude": [
-    "wwwroot",
-    "node_modules"
-  ],
-  "publishExclude": [
-    "**.user",
-    "**.vspscc"
-  ]
+    "exclude": [
+        "wwwroot",
+        "node_modules"
+    ],
+    "publishExclude": [
+        "**.user",
+        "**.vspscc"
+    ]
 }

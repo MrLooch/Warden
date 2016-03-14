@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Warden.DataModel.Entities;
-using System.ComponentModel.DataAnnotations;
 
 namespace Warden.DataModel.Authentication
 {
-    public class UserRegistration : EntityBase
+    public class UserLoginDTO : EntityBase
     {
-        [Required]
-        public string UserName { get; set; }
-
+        public UserLoginDTO()
+        {
+            RememberMe = false;
+        }
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -20,5 +21,10 @@ namespace Warden.DataModel.Authentication
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RememberMe { get; set; }
     }
 }

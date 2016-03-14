@@ -17,6 +17,9 @@ using Warden.Server.Services.CommandHandler;
 using Warden.Server.Services.Command;
 using Microsoft.AspNet.Authorization;
 using Microsoft.Extensions.Logging;
+using Warden.Server.Services.Authentication;
+using Warden.Core.Domain.Authentication;
+using Warden.DataModel.Entities;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,7 +31,7 @@ namespace Warden.server.WebApi
         private IAccountService accountService;
         private readonly ILogger logger;
 
-        public AccountController(IAccountService accountService,
+        public AccountController(IAccountService accountService,                             
                                  ILogger<AccountController> logger)
         {
             this.accountService = accountService;
@@ -39,13 +42,12 @@ namespace Warden.server.WebApi
         [HttpPost]
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IActionResult> Post([FromBody]UserRegistration registration)
+        public async Task<IActionResult> Post([FromBody]UserRegistrationDTO registration)
         {
             this.logger.LogVerbose("Registeration for {0}", registration.Email);
 
             if (!ModelState.IsValid)
             {
-                //return HttpBadRequest.HttpUnauthorized;
                 return HttpBadRequest();
             }
 
@@ -73,7 +75,7 @@ namespace Warden.server.WebApi
         // POST api/values
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Post([FromBody]UserLogin loginDetails)
+        public async Task<IActionResult> Post([FromBody]UserLoginDTO loginDetails)
         {
             if (!ModelState.IsValid)
             {
@@ -83,24 +85,31 @@ namespace Warden.server.WebApi
 
             try
             {
-                var userRegistration = await accountService.FindByEmail(loginDetails.Email);
+                UserEntity authorizedUser = await this.accountService.login(loginDetails, HttpContext.Authentication);
+                //var userRegistration = await accountService.FindByEmail(loginDetails.Email);
 
-                if (userRegistration.Count() != 1)
+                //if (userRegistration.Count() != 1)
+                //{
+                //    ModelState.AddModelError("Email", "Duplicate email accounts");
+                //    return new BadRequestObjectResult(ModelState);
+                //}
+                //else
+                //{
+                //    var user = userRegistration.First();
+                //    if (user.Password != loginDetails.Password)
+                //    {
+                //        ModelState.AddModelError("Password", "Incorrect passowrd");
+                //        return new BadRequestObjectResult(ModelState);
+                //    }
+                //}
+
+                if(authorizedUser == null)
                 {
-                    ModelState.AddModelError("Email", "Duplicate email accounts");
+                    ModelState.AddModelError("Password", "Incorrect passowrd");
                     return new BadRequestObjectResult(ModelState);
                 }
-                else
-                {
-                    var user = userRegistration.First();
-                    if (user.Password != loginDetails.Password)
-                    {
-                        ModelState.AddModelError("Password", "Incorrect passowrd");
-                        return new BadRequestObjectResult(ModelState);
-                    }
-                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
             }

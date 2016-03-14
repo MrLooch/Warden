@@ -52,10 +52,10 @@
                 $log.debug("Logged in user " + email + " status is " + status.status);
                 //$routeParams.redirect will have the route
                 //they were trying to go to initially
-                if (status.status != 200) {
-                    vm.errorMessage = status.data.UserName[0];
-                    return;
-                }
+                //if (status.status != 200) {
+                //    vm.errorMessage = status.data.UserName[0];
+                //    return;
+                //}
 
                 //if (status && $routeParams && $routeParams.redirect) {
                 //    path = path + $routeParams.redirect;

@@ -6,17 +6,21 @@
   "projectUrl": "",
   "licenseUrl": "",
 
-  "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
-    "Warden.DataModel": "1.0.0-*",
-    "Warden.Core.Domain": "1.0.0-*"
-  },
+    "dependencies": {
+        "Microsoft.AspNet.Http": "1.0.0-rc1-final",
+        "Microsoft.AspNet.Mvc": "6.0.0-rc1-final"
+    },
 
   "frameworks": {
     "dnx451": {
-      "frameworkAssemblies": {
-        "System.ComponentModel.DataAnnotations": "4.0.0.0"
-      }      
+        "frameworkAssemblies": {
+            "System.ComponentModel.DataAnnotations": "4.0.0.0"
+        },
+        "dependencies": {
+            "Warden.DataModel": "1.0.0-*",
+            "Warden.Core.Domain": "1.0.0-*",
+            "Warden.Infrastructure.Core": "1.0.0-*"
+        }
     }
   }
 }

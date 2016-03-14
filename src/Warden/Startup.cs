@@ -1,31 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Warden.Server.Services;
-using Warden.Core.Domain;
-using Warden.DataModel;
-using Warden.DataService.Core.Repository;
 using Autofac;
-using Warden.DataService.Core.Connection;
 using Autofac.Extensions.DependencyInjection;
-
-using Microsoft.AspNet.Authentication;
-using Microsoft.AspNet.Authentication.Cookies;
-using Owin;
-using Microsoft.Owin;
-using Microsoft.Owin.Extensions;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.OAuth;
-using Microsoft.Owin.Builder;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Builder.Extensions;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.PlatformAbstractions;
+using Warden.DataAccess.EF;
+using Microsoft.Data.Entity;
+using System.Data.Common;
+using Warden.Core.Domain.Authentication;
+using Warden.DataAccess.EF.Authentication;
+using Warden.Server.Services.Authentication;
+using Warden.Server.Services;
 
 namespace Warden
 {
@@ -33,16 +22,50 @@ namespace Warden
     {
         private Serilog.ILogger logger;
 
-        public Startup()
+        private static string _applicationPath = string.Empty;
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
+            _applicationPath = appEnv.ApplicationBasePath;
+            // Setup configuration sources.
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            if (env.IsDevelopment())
+            {
+                // This reads the configuration keys from the secret store.
+                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
+                builder.AddUserSecrets();
+            }
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
-        
+
+        public IConfigurationRoot Configuration { get; set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            authenticationConfigureServices(services);
+            // Add Entity Framework services to the services container.
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<WardenContext>(options =>
+                options.UseSqlServer(Configuration["Data:WardenConnection:ConnectionString"]));
 
+            //authenticationConfigureServices(services);
+
+            // Repositories
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+
+            // Services
+            services.AddScoped<IMembershipService, MembershipService>();
+            services.AddScoped<IEncryptionService, EncryptionService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddMvc();
             //services.AddAuthentication()
             // Create the Autofac container builder.
@@ -102,7 +125,7 @@ namespace Warden
 
             app.UseIISPlatformHandler();
 
-            ConfigureStoreAuthentication(app);
+            //ConfigureStoreAuthentication(app);
 
             //Most websites will need static files, but default documents and
             // directory browsing are typically not used.
@@ -111,7 +134,23 @@ namespace Warden
             // Add static files to the request pipeline
             app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseCookieAuthentication(options =>
+            {
+                options.AutomaticAuthenticate = true;
+                options.AutomaticChallenge = false;
+            });
+
+            app.UseMvc(routes =>
+            {
+                // route1
+                routes.MapRoute(
+                    name: "Application",
+                    template: "{*url}",
+                    defaults: new { controller = "Home", action = "Index" }
+                );              
+            });
+
+            // app.UseMvc();
         }
 
         // Entry point for the application.
