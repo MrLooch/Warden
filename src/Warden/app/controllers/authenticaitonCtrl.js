@@ -6,9 +6,9 @@
         .controller('AuthenticaitonCtrl', AuthenticaitonCtrl);
 
     
-    AuthenticaitonCtrl.$inject = ['authService','$location', 'ngDialog', '$log', '$scope'];
+    AuthenticaitonCtrl.$inject = ['authService','$location', 'ngDialog', '$log', '$scope','notificationService'];
     
-    function AuthenticaitonCtrl(authService,$location, ngDialog, $log, $scope) {
+    function AuthenticaitonCtrl(authService, $location, ngDialog, $log, $scope, notificationService) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'registerController';
@@ -19,6 +19,7 @@
         vm.password = null;
         vm.errorMessage = null;
         vm.isUserLoggedIn = false;
+        vm.hasAuthenticationError = false;
 
         function registerCommand(username, email, password) {
             // Set default GUID for ID to empty
@@ -28,7 +29,7 @@
                 $log.debug("Signed up user " + vm.username + " status is " + status.status);
                 //$routeParams.redirect will have the route
                 //they were trying to go to initially                
-
+                vm.hasAuthenticationError = false;
                 // Save the credentials
 
                 // Add login use name to navigation bar
@@ -40,6 +41,7 @@
                 ngDialog.closeAll();
             }, function (error) {
                 $log.error("Registration failed " + error.status);
+                vm.hasAuthenticationError = true;
                 vm.isUserLoggedIn = false;
             });
         }
@@ -50,12 +52,14 @@
 
             authService.login(id,  email, password).then(function (status) {
                 $log.debug("Logged in user " + email + " status is " + status.status);
+                vm.hasAuthenticationError = false;
                 //$routeParams.redirect will have the route
                 //they were trying to go to initially
-                //if (status.status != 200) {
-                //    vm.errorMessage = status.data.UserName[0];
-                //    return;
-                //}
+                if (status.status != 200) {
+                    notificationService.displayError("Authenication failed.");
+                    vm.hasAuthenticationError = true;
+                    return;
+                }
 
                 //if (status && $routeParams && $routeParams.redirect) {
                 //    path = path + $routeParams.redirect;

@@ -50,36 +50,37 @@
     });
 }(), function() {
     "use strict";
-    function a(a, b, c, d, e) {
-        function f(e, f, g) {
+    function a(a, b, c, d, e, f) {
+        function g(e, f, g) {
             var h = "00000000-0000-0000-0000-000000000000";
             a.register(h, e, f, g).then(function(a) {
-                d.debug("Signed up user " + i.username + " status is " + a.status), i.isUserLoggedIn = !0, 
-                b.path("/dashboard"), c.closeAll();
+                d.debug("Signed up user " + j.username + " status is " + a.status), j.hasAuthenticationError = !1, 
+                j.isUserLoggedIn = !0, b.path("/dashboard"), c.closeAll();
             }, function(a) {
-                d.error("Registration failed " + a.status), i.isUserLoggedIn = !1;
+                d.error("Registration failed " + a.status), j.hasAuthenticationError = !0, j.isUserLoggedIn = !1;
             });
         }
-        function g(e, f) {
-            var g = "00000000-0000-0000-0000-000000000000";
-            a.login(g, e, f).then(function(a) {
-                d.debug("Logged in user " + e + " status is " + a.status), i.isUserLoggedIn = !0, 
-                b.path("/dashboard"), c.closeAll();
+        function h(e, g) {
+            var h = "00000000-0000-0000-0000-000000000000";
+            a.login(h, e, g).then(function(a) {
+                return d.debug("Logged in user " + e + " status is " + a.status), j.hasAuthenticationError = !1, 
+                200 != a.status ? (f.displayError("Authenication failed."), void (j.hasAuthenticationError = !0)) : (j.isUserLoggedIn = !0, 
+                b.path("/dashboard"), void c.closeAll());
             });
         }
-        function h() {
+        function i() {
             a.logout(), b.path("/");
         }
-        var i = this;
-        i.title = "registerController", d.debug("Just started register controller!"), i.username = null, 
-        i.email = null, i.password = null, i.errorMessage = null, i.isUserLoggedIn = !1, 
-        i.signup = function() {
-            f(i.username, i.email, i.password);
-        }, i.login = function() {
-            g(i.email, i.password);
-        }, i.logout = function() {
-            h();
-        }, i.loginUser = function() {
+        var j = this;
+        j.title = "registerController", d.debug("Just started register controller!"), j.username = null, 
+        j.email = null, j.password = null, j.errorMessage = null, j.isUserLoggedIn = !1, 
+        j.hasAuthenticationError = !1, j.signup = function() {
+            g(j.username, j.email, j.password);
+        }, j.login = function() {
+            h(j.email, j.password);
+        }, j.logout = function() {
+            i();
+        }, j.loginUser = function() {
             c.open({
                 template: "pages/login.html",
                 plain: !1,
@@ -88,7 +89,7 @@
                 controller: "AuthenticaitonCtrl",
                 controllerAs: "vm"
             });
-        }, i.showsignup = function() {
+        }, j.showsignup = function() {
             c.open({
                 template: "pages/signup.html",
                 plain: !1,
@@ -99,7 +100,7 @@
             });
         };
     }
-    angular.module("wardenapp").controller("AuthenticaitonCtrl", a), a.$inject = [ "authService", "$location", "ngDialog", "$log", "$scope" ];
+    angular.module("wardenapp").controller("AuthenticaitonCtrl", a), a.$inject = [ "authService", "$location", "ngDialog", "$log", "$scope", "notificationService" ];
 }(), function() {
     "use strict";
     function a(a) {
@@ -188,7 +189,7 @@
             templateUrl: "pages/navbar.html",
             controller: "AuthenticaitonCtrl",
             controllerAs: "authCtrl",
-            scope: {}
+            scope: !0
         };
         return b;
     }

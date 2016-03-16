@@ -1,21 +1,16 @@
-﻿<form class="form" ng-controller="AuthenticaitonCtrl as vm" ng-submit="vm.login()" role="form" style="margin-left:10px;" name="userLoginForm" >
+﻿<form name="userLoginForm" ng-controller="AuthenticaitonCtrl as vm" ng-submit="vm.login()" role="form" style="margin-left:10px;" novalidate>
     <!--<div class="container-fluid">-->
         <!--<div class="row" >-->
             <!--<div class="col-md-12">-->
                 <div style="margin-top:10px">
-                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                    <div class="form-group" ng-class="{ 'has-error': userLoginForm.email.$touched && userLoginForm.email.$invalid}">
                         <label for="email">Email</label>
-                        <input type="email" 
-                               id="email" 
-                               name="email" 
-                               class="form-control" 
-                               ng-model="vm.email" 
-                               required />
-                        <span ng-show="form.email.$touched && form.email.$invalid" class="help-block">Email is required</span>
+                        <input type="email" id="email" name="email" class="form-control" ng-model="vm.email" required />
+                        <span ng-show="userLoginForm.email.$touched && userLoginForm.email.$invalid" class="help-block">Email is required</span>
                     </div>
                 </div>
                 <div style="margin-top:10px">
-                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                    <div class="form-group" ng-class="{ 'has-error': userLoginForm.password.$touched && userLoginForm.password.$invalid }">
                         <label for="password">Password</label>
                         <input type="password"
                                name="password"
@@ -23,12 +18,15 @@
                                class="form-control"
                                ng-model="vm.password"
                                required />
-                        <span ng-show="form.password.$touched && form.password.$invalid && form.password.$error.required" class="help-block">Password is required</span>
+                        <span ng-show="userLoginForm.password.$touched && userLoginForm.password.$invalid" class="help-block">Password is required</span>
                     </div>
+                </div>
+                <div>
+                    <span ng-show="vm.hasAuthenticationError" class="help-block">Authenication failed.</span>
                 </div>
                 <div style="margin-top:10px">
                     <div class="form-group">
-                        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
                         <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         <!--TODO at later stage-->
                         <a href="#/forgotpassword" class="btn btn-link">Forgot Password?</a>

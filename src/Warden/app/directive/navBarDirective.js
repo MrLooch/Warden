@@ -18,7 +18,7 @@
             templateUrl: 'pages/navbar.html',
             controller: 'AuthenticaitonCtrl', //Embed a custom controller in the directive,
             controllerAs: 'authCtrl',
-            scope: {}
+            scope: true
         };
         return directive;
 
