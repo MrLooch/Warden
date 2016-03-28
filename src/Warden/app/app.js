@@ -1,10 +1,10 @@
 ﻿(function () {
     'use strict';
 
-    config.$inject = ['$routeProvider', '$locationProvider', '$logProvider', 'ngDialogProvider'];
-    angular.module('wardenapp', ['ngRoute', 'ngResource', 'ui.grid', 'ui.grid.edit', 'ngDialog', 'acute.select', 'LocalStorageModule', 'common.core']).config(config);
+    config.$inject = ['$routeProvider', '$locationProvider', '$logProvider', 'ngDialogProvider','GoogleMapApi'];
+    angular.module('wardenapp', ['ngRoute', 'ngResource', 'ui.grid', 'ui.grid.edit', 'ngDialog', 'acute.select', 'LocalStorageModule', 'common.core', 'ngMap', 'uiGmapgoogle-maps']).config(config);
 
-    function config($routeProvider, $locationProvider, $logProvider, ngDialogProvider) {
+    function config($routeProvider, $locationProvider, $logProvider, ngDialogProvider, GoogleMapApi) {
         $routeProvider.when('/', {
                         templateUrl: '/pages/home.html',
                         controller: 'HomeController',
@@ -29,7 +29,11 @@
                      .otherwise({
                          redirectTo: "/"
                      });
-
+        GoogleMapApi.configure({
+            //    key: 'your api key',
+            v: '3.17',
+            libraries: 'places'
+        });
 
         $locationProvider.html5Mode(true);
 
