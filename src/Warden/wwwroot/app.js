@@ -29,7 +29,7 @@
         });
     }
     a.$inject = [ "$routeProvider", "$locationProvider", "$logProvider", "ngDialogProvider" ], 
-    angular.module("wardenapp", [ "ngRoute", "ngResource", "ui.grid", "ui.grid.edit", "ngDialog", "acute.select", "LocalStorageModule", "common.core", "ngMap" ]).config(a);
+    angular.module("wardenapp", [ "ngRoute", "ngResource", "ui.grid", "ui.grid.edit", "ngDialog", "LocalStorageModule", "common.core" ]).config(a);
 }(), function() {
     "use strict";
     angular.module("wardenapp").constant("AUTH_EVENTS", {
@@ -103,16 +103,11 @@
     angular.module("wardenapp").controller("AuthenticaitonCtrl", a), a.$inject = [ "authService", "$location", "ngDialog", "$log", "$scope", "notificationService" ];
 }(), function() {
     "use strict";
-    function a(a, b) {
-        var c = this;
-        c.title = "Dashboard", c.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyD5WDI_JPLzXkpC74dKveD6Y-luoljtDxc", 
-        c.types = "['establishment']", c.placeChanged = function() {
-            c.place = this.getPlace(), console.log("location", c.place.geometry.location), c.map.setCenter(c.place.geometry.location);
-        }, b.getMap().then(function(a) {
-            c.map = a;
-        });
+    function a(a) {
+        var b = this;
+        b.title = "Dashboard";
     }
-    angular.module("wardenapp").controller("DashboardController", a), a.$inject = [ "$location", "ngMap" ];
+    angular.module("wardenapp").controller("DashboardController", a), a.$inject = [ "$location" ];
 }(), function() {
     "use strict";
     function a(a, b, c, d, e) {

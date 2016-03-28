@@ -2,21 +2,18 @@
   "name": "ASP.NET",
   "private": true,
   "dependencies": {
+    "angularjs": "1.5.3",
     "jquery": "2.1.4",
     "bootstrap": "3.3.5",
-    "angular": "1.4.6",
     "angular-route": "1.4.6",
     "angular-resource": "1.4.6",
     "angular-ui-grid": "~3.0.7",
     "ngDialog": "~0.5.6",
-    "acute-select": "~0.1.0",
     "angular-local-storage": "0.2.2",
     "toastr": "2.1.2",
-    "ngmap": "~1.16.7",
-    "AngularJS-Toaster": "0.4.15",
-    "angular-google-maps": "2.2.1"
+    "AngularJS-Toaster": "0.4.15"
   },
   "resolutions": {
-    "angular": "^1.2"
+    "angular": ">1.2.6"
   }
 }

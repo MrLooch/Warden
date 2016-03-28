@@ -6,7 +6,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.initConfig({
+        jshint: {
+            all : ['wwwroot/app.js', 'app/app.js', 'app/controllers/dashboardController.js']
+        },
         uglify: {
             my_target: {
                 options: {
@@ -15,7 +19,6 @@ module.exports = function (grunt) {
                 files: { 'wwwroot/app.js': ['app/app.js', 'app/**/*.js'] }
             }
         },
-
         watch: {
             scripts: {
                 files: ['app/**/*.js'],
@@ -29,7 +32,7 @@ module.exports = function (grunt) {
                     src: '**',
                     expand: true
             }
-        }
+        }     
     });
 
     grunt.registerTask('default', ['uglify', 'watch']);
