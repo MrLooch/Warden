@@ -18,7 +18,7 @@
         vm.email = null;
         vm.password = null;
         vm.errorMessage = null;
-        vm.isUserLoggedIn = false;
+        
         vm.hasAuthenticationError = false;
 
         function registerCommand(username, email, password) {
@@ -31,10 +31,7 @@
                 //they were trying to go to initially                
                 vm.hasAuthenticationError = false;
                 // Save the credentials
-
-                // Add login use name to navigation bar
-                vm.isUserLoggedIn = true;
-                
+               
                 // Redirect the path to the user dashboard
                 $location.path('/dashboard');
 
@@ -42,7 +39,6 @@
             }, function (error) {
                 $log.error("Registration failed " + error.status);
                 vm.hasAuthenticationError = true;
-                vm.isUserLoggedIn = false;
             });
         }
 
@@ -65,8 +61,7 @@
                 //    path = path + $routeParams.redirect;
                 //}
 
-                vm.isUserLoggedIn = true;
-
+                
                 $location.path('/dashboard');
 
                 ngDialog.closeAll();
@@ -77,6 +72,11 @@
             authService.logout();
             $location.path('/');
 
+        }
+
+        // Check if the user has been authenticated
+        vm.isUserLoggedIn = function () {
+            return authService.authentication.isAuthenticated;
         }
 
         // Send login registration details
