@@ -5,6 +5,10 @@
             c.authorize === !0 && (b.authentication.isAuthenticated || d.path("/"));
         }), c.$on("$routeChangeError", function(a, b, c, e) {
             e instanceof AuthorizationError && d.path("/login").search("returnTo", b.originalPath);
+        }), $(document).ready(function() {
+            $("[data-toggle=offcanvas]").click(function() {
+                $(".row-offcanvas").toggleClass("active");
+            });
         });
     }
     function b(a, b, c, d) {
@@ -196,6 +200,18 @@
 }(), function() {
     "use strict";
     function a() {
+        var a = {
+            restrict: "E",
+            replace: !0,
+            templateUrl: "pages/components/createsite.html",
+            scope: !0
+        };
+        return a;
+    }
+    angular.module("wardenapp").directive("createSite", a);
+}(), function() {
+    "use strict";
+    function a() {
         function a(a, b, c) {}
         var b = {
             link: a,
@@ -208,6 +224,18 @@
         return b;
     }
     angular.module("wardenapp").directive("wardenNavbar", a);
+}(), function() {
+    "use strict";
+    function a() {
+        var a = {
+            restrict: "E",
+            replace: !0,
+            templateUrl: "pages/sideBar.html",
+            scope: !0
+        };
+        return a;
+    }
+    angular.module("wardenapp").directive("sideBar", a);
 }(), function() {
     "use strict";
     angular.module("common.core", [ "ngRoute" ]);

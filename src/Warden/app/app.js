@@ -25,6 +25,12 @@
                 $location.path("/login").search("returnTo", to.originalPath);
             }
         });
+
+        $(document).ready(function () {          
+            $('[data-toggle=offcanvas]').click(function () {
+                $('.row-offcanvas').toggleClass('active');
+            });
+        });
     }
 
     function config($routeProvider, $locationProvider, $logProvider, ngDialogProvider) {

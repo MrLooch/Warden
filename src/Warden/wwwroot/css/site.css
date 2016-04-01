@@ -1,5 +1,6 @@
-﻿body {    
+﻿body, .row-offcanvas  {    
     padding-bottom: 0px;
+    height: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -141,4 +142,53 @@ p.one {
         /*height:350px;
         line-height: 20px;*/        
 	}
+}
+
+#main {
+    height: 100%;
+    overflow: auto;
+    background-color: whitesmoke;
+}
+
+.panel-default {
+    height:100px;
+}
+
+/*
+ * off Canvas sidebar
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 768px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+        width: calc(100% + 220px);
+    }
+
+    .row-offcanvas-left {
+        left: -220px;
+    }
+
+        .row-offcanvas-left.active {
+            left: 0;
+        }
+
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    .movieDescription {
+        margin-left: 240px !important;
+    }
+}
+
+@media (max-width: 490px) {
+    .movieDescription {
+        margin-left: 125px !important;
+    }
 }

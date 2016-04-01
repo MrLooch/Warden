@@ -1,4 +1,16 @@
-﻿<div class="row" ng-controller="MyCtrl as vm">
-   
-
+﻿<div ng-controller="DashboardController as vm">
+    <div>
+        <input places-auto-complete size=80
+               ng-model="vm.address"
+               types={{types}}
+               on-place-changed="vm.placeChanged()" /> <br />
+        <div ng-show="vm.place">
+            Address = {{vm.place.formatted_address}} <br />
+            Location: {{vm.place.geometry.location}}<br />
+        </div>
+        address : {{vm.address}}
+    </div>
+    <div>
+        <ng-map></ng-map>
+    </div>
 </div>

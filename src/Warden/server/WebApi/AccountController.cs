@@ -111,7 +111,7 @@ namespace Warden.server.WebApi
             }
             catch (Exception e)
             {
-
+                this.logger.LogError(e.Message);
             }
             // TODO: Set new id            
             return new HttpOkResult();
