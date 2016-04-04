@@ -12,7 +12,7 @@
     "angular-local-storage": "0.2.2",
     "toastr": "2.1.2",
     "AngularJS-Toaster": "0.4.15",
-    "ngmap": "~1.16.7",
+    "ngmap": "1.16.7",
     "angular-google-places-autocomplete": "~0.2.7"
   },
   "resolutions": {
