@@ -1,7 +1,23 @@
-﻿body, .row-offcanvas  {    
-    padding-bottom: 0px;
-    height: 100%;
+﻿* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+/*
+ * Body
+ * --------------------------------------------------
+ */
+body  {    
+    padding-bottom: 0px;
+    height: 100%;      
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -23,52 +39,56 @@ textarea {
     max-width: 280px;
 }
 
+/*
+ * Site
+ * --------------------------------------------------
+ */
 .siteGrid {
   height: 450px;
   width: 100%;
 }
 
+/*
+ * Hero Image
+ * --------------------------------------------------
+ */
 .hero-unit {
     background-image: url('../images/superboy.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
-    height:700px;
+    /*min-height:715px;
+    min-width:624px;*/
   }
+
+#hero-content {
+    margin: 50px 50px;
+    padding-bottom: 50px;
+}
+
 .hero-unit h1 {
     color: #FFFFFF;
     font-size: 60px;
     letter-spacing: -1px;
     line-height: 1;
-    margin-bottom: 0;
-}
-.hero-unit h2 {
-    font-size: 25px;
-    color: #FFFFFF;   
+    margin-bottom: 50px;
 }
 
 .hero-unit p {
     vertical-align: middle;
-
+    font-size:1.2em;
 }
 
-.hero-test {
-    vertical-align:middle;
+/*
+ * Navigation Bar
+ * --------------------------------------------------
+ */
+/** HEADER **/
+#header-nav {
+  background-color: #f6b319;
+  border-radius: 0;
+  border: 0;
 }
-
-p.one {
-    color:white;
-    font-size: 20px;
-    letter-spacing: -1px;
-    line-height: 1.5;
-    margin-bottom: 0;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-right: 100px;
-    padding-left: 0px;
-    text-align:left;
-}
-
 .navbar {
    background-color: transparent;
    background: transparent;
@@ -85,110 +105,226 @@ p.one {
   box-shadow: 0px 0px;
 }
 
+#logo-img {
+  background: url('../images/logowarden_medium.png') no-repeat;
+  width: 100px;
+  height: 100px;
+  margin: 10px 15px 10px 0;
+}
+
+#nav-list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#nav-list a {
+  text-align: center;
+}
+/*#nav-list a:hover {
+  background: #E7E7E7;
+}*/
+#nav-list a span {
+  font-size: 1.8em;
+}
+
 .nav {
     color: #FFFFFF;
-    height: 100px;
-    line-height: 50px;
+    /*height: 100px;*/
+    /*line-height: 50px;*/
     margin-right:50px;
 }
 
 .nav.navbar-nav.navbar-right li a {
     color: white;
-    height: 60px;
+    /*height: 60px;*/
     margin-top: 25px;    
     margin-left: 25px;
 }
 
 .navbar-brand {
-  height: 100px;
+  /*height: 100px;*/
   padding: 15px 15px;
   font-size: 18px;
-  line-height: 50px;
+  /*line-height: 50px;*/
 }
 
 .navbar-header{
     margin-left:2% !important;
 }
 
+.navbar-header button.navbar-toggle, .navbar-header .icon-bar {
+  /*border: 1px solid #61122f;*/  
+}
+.navbar-header button.navbar-toggle {
+  /*clear: both;*/
+  /*margin-top: -60px;*/
+  margin-top:25px;
+  margin-right:50px;
+}
+
 .navbar-collapse.in {
   overflow-y:visible;
 }
 
-.row-margin { margin-top:20px; }
-
 .custom-navbar .fa {font-size:25px}
 
-@media (max-width:767px) { 
-	.custom-navbar .navbar-right {
-	    float: right;
-	    padding-right: 15px;
-	}
-	.custom-navbar .nav.navbar-nav.navbar-right li {
-	    float: right;
-	}
-  	.custom-navbar .nav.navbar-nav.navbar-right li > a {
-	    padding:8px 5px;
-	}
-	.custom-navbar .navbar-toggle {
-	    float: right
-	}
-	/*.custom-navbar .navbar-header {
-	    float: left;
-	    width: auto!important;
-	}*/
-	.custom-navbar .navbar-collapse {
-	    clear: both;
-	    float: none;
-        /*height:350px;
-        line-height: 20px;*/        
-	}
-}
-
-#main {
-    height: 100%;
-    overflow: auto;
-    background-color: whitesmoke;
-}
-
-.panel-default {
-    height:100px;
-}
-
 /*
- * off Canvas sidebar
+ * Dashboard
  * --------------------------------------------------
  */
-@media screen and (max-width: 768px) {
-    .row-offcanvas {
-        position: relative;
-        -webkit-transition: all 0.25s ease-out;
-        -moz-transition: all 0.25s ease-out;
-        transition: all 0.25s ease-out;
-        width: calc(100% + 220px);
+.dashboard-content { margin-top:20px; }
+
+.dashboard-tile {
+  position: relative;
+  overflow: hidden;  
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  /*margin: 0 auto 15px;*/
+  background-color: dodgerblue;
+  color: white;  
+  margin-right:20px;  
+}
+
+.dashboard-tile span {
+  /*position: absolute;*/
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;   
+  font-size: 1.2em;
+  text-transform: uppercase;
+  opacity: .8;  
+  font-size:1.5em;
+}
+
+#site-selection h3 {
+    color:black;
+}
+
+.dashboard-tile:hover {
+  background-color: #0a508a;
+  color:white;
+  cursor:pointer;
+}
+
+/* ----- End Dashboard --------*/
+
+/********** Medium devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Header */
+  /*#logo-img {
+    background: url('../images/logowarden_medium.png') no-repeat;
+    width: 100px;
+    height: 100px;
+    margin: 5px 5px 5px 0;
+  }*/
+  /* End Header */
+
+    .hero-unit h1 {
+        font-size: 50px;
     }
-
-    .row-offcanvas-left {
-        left: -220px;
-    }
-
-        .row-offcanvas-left.active {
-            left: 0;
-        }
-
-    .sidebar-offcanvas {
-        position: absolute;
-        top: 0;
+    .hero-unit p {
+        font-size: 20px;
     }
 }
 
-@media (max-width: 650px) {
-    .movieDescription {
-        margin-left: 240px !important;
+/********** Small devices only **********/
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Header */
+   /*#logo-img {
+        background: url('../images/logowarden_small.png') no-repeat;
+        width: 100px;
+        height: 100px;
+        margin: 5px 5px 5px 0;
+  }*/
+  /* End Header */
+  .hero-unit h1 {
+        font-size: 40px;
+    }
+    .hero-unit p {
+        font-size: 18px;
     }
 }
 
-@media (max-width: 490px) {
-    .movieDescription {
-        margin-left: 125px !important;
+/********** Extra small devices only **********/
+@media (max-width:767px) { 
+
+    /* Header */
+   /*#logo-img {
+        background: url('../images/logowarden_medium.png') no-repeat;
+        width: 100px;
+        height: 100px;
+        margin: 5px 5px 5px 0;
+    }*/
+    /* End Header */
+    .hero-unit {
+        background-image: url('../images/superboy-small2.jpg');
     }
+    .hero-unit h1 {
+        font-size: 30px;
+    }
+    .hero-unit p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width:416px) { 
+
+    /* Header */
+   /*#logo-img {
+        background: url('../images/logowarden_medium.png') no-repeat;
+        width: 100px;
+        height: 100px;
+        margin: 5px 5px 5px 0;
+    }*/
+    /* End Header */
+    .hero-unit {
+        background-image: url('../images/superboy-xs-scaled.jpg');
+    }
+    .hero-unit h1 {
+        font-size: 30px;
+    }
+    .hero-unit p {
+        font-size: 16px;
+    }
+}
+
+/* END HEADER */
+
+/* FOOTER */
+.panel-footer {
+  margin-top: 30px;
+  padding-top: 35px;
+  padding-bottom: 30px;
+  background-color: #005DAA;
+  border-top: 0;
+  color: #fff;
+}
+.panel-footer div.row {
+  margin-bottom: 35px;
+}
+#hours, #address {
+  line-height: 2;
+}
+#hours > span, #address > span {
+  font-size: 1.3em;
+}
+#address p {
+  color: white;
+  font-size: .8em;
+  line-height: 1.8;
+}
+#testimonials {
+  font-style: italic;
+}
+#testimonials p:nth-child(2) {
+  margin-top: 25px;
+}
+/* END FOOTER */
+
+#main-content {
+    margin: 50px 50px;
+}
+
+#what-content {
+    margin-top:50px;
 }

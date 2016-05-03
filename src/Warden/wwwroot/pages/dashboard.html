@@ -1,40 +1,50 @@
-﻿<div class="container">
+﻿<div class="container-fluid">
     <div class="row">
         <div warden-navbar style="background-color:steelblue"></div>
     </div>
-    
-    <div class="row row-margin">            
+</div>
+<div class="container">
+    <div class="row dashboard-content">
         <!--<div class="row-offcanvas row-offcanvas-left">-->
-            <!--<div class="col-md-3">
-                <side-bar></side-bar>
-            </div>-->            
-            <div >
-                <!--<p class="visible-xs">
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                </p>-->
-                <!--<div class="panel panel-default col-lg-4" style="background-color:lightgreen">
-                    <div class="panel-body">Jeppesen 615 Dandenon Rd</div>
-                </div>
-                <div class="panel panel-default col-lg-4" style="background-color:orange">
-                    <div class="panel-body">Hawkers Fishermens Bend</div>
-                </div>
-                <div class="panel panel-default col-lg-4" style="background-color:tomato">
-                    <div class="panel-body">Add New Site</div>
-                </div>-->
-                <div class="col-lg-6">
-                    <button type="button" class="btn btn-primary">Jeppesen 615 Dandenon Rd</button>
-                </div>                
-                <div class="col-lg-6">
-                    <button type="button" class="btn btn-trello">Add New Site</button>
-                </div>
-                <!--<ul class="nav nav-pills">
-                    <li class="nav-divider"></li>
-                    <li><a ng-href="sites">Jeppesen 615 Dandenon Rd<i class="fa fa-users fa-fw pull-right"></i></a></li>
-                    <li class="nav-divider"></li>
-                    <li><a ng-href="sites">Hawkers Fishermens Bend<i class="fa fa-users fa-fw pull-right"></i></a></li>
-                </ul>-->
-                <!--<create-site></create-site>-->
+        <!--<div class="col-md-3">
+            <side-bar></side-bar>
+        </div>-->
+        <div id="site-selection">
+            <div>
+                <h3>Sites</h3>
             </div>
+            <!--<p class="visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+            </p>-->
+            <!--<div class="panel panel-default col-lg-4" style="background-color:lightgreen">
+                <div class="panel-body">Jeppesen 615 Dandenon Rd</div>
+            </div>
+            <div class="panel panel-default col-lg-4" style="background-color:orange">
+                <div class="panel-body">Hawkers Fishermens Bend</div>
+            </div>
+            <div class="panel panel-default col-lg-4" style="background-color:tomato">
+                <div class="panel-body">Add New Site</div>
+            </div>-->
+            <section>
+                <div class="col-sm-6 nopadding">
+                    <div class="dashboard-tile">
+                        <span>Jeppesen 615 Dandenon Rd</span>
+                    </div>
+                </div>
+                <div class="col-sm-6 nopadding">
+                    <div class="dashboard-tile">
+                        <span>Add New Site</span>
+                    </div>
+                </div>
+            </section>
+            <!--<ul class="nav nav-pills">
+                <li class="nav-divider"></li>
+                <li><a ng-href="sites">Jeppesen 615 Dandenon Rd<i class="fa fa-users fa-fw pull-right"></i></a></li>
+                <li class="nav-divider"></li>
+                <li><a ng-href="sites">Hawkers Fishermens Bend<i class="fa fa-users fa-fw pull-right"></i></a></li>
+            </ul>-->
+            <!--<create-site></create-site>-->
         </div>
+    </div>
     <!--/div--><!--/row-offcanvas -->
 </div> 

@@ -1,31 +1,35 @@
-﻿<div class="container-fluid">
+﻿<div class="container-fluid">    
     <div class="row">
         <div class="hero-unit" ng-controller="AuthenticaitonCtrl as authCtrl">
+
             <div warden-navbar></div>
-            <div class="row">
-                <div class="col-md-6" style="padding-top:50px; padding-left:10%;">
-                    <div class="row text-left" style="width:100%;">
+
+            <div id="hero-content" class="row img-responsive">
+                <div class="col-xs-6">
+                    <div class="text-left">
                         <h1>
                             Keep your organisation
                             safe and ready.
                         </h1>
-                    </div>                    
-                    <div class="row text-left" style="padding-top:15%">
-                        <p class="one">
-                            Warden prepares your site and keeps people aware<br />
+                    </div>
+                    <div class="text-left">
+                        <p class="hidden-xs">
+                            Warden prepares your site and keeps people aware
                             of incidences to help react quickly and evacuate.
                         </p>
                         <a class="btn btn-primary" ng-click='authCtrl.showsignup()' data-track="Sign Up"> Sign Up </a>
                     </div>
-                    <div class="col-md-6"></div>
+                    <div class="col-xs-6"></div>
                 </div>
             </div>
         </div>
     </div> <!-- Hero row-->
+</div> <!--Main container-->
+<div class="container">
     <div class="row">
-        <div class="container text-center">
-            <div class="row" style="padding-top:50px">
-                <div class="col-md-6">
+        <div class="text-center">
+            <div id="what-content" class="row">
+                <div class="col-sm-6">
                     <section>
                         <p style="font-size:150%">
                             Great for any size organisation; Government, Corporate,
@@ -41,7 +45,7 @@
                         </p>
                     </section>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <div class="row">
                         <img src="../home-devices.png" alt="HTML5" style="width:461px;height:228px" />
                     </div>
@@ -49,7 +53,10 @@
             </div>
         </div>
     </div> <!-- Section description row-->
-    <div class="row" ng-include="'pages/footer.html'"></div>
+</div> <!-- Section description cotainer-->
 
-</div> <!--Main container-->
+<footer class="panel-footer">
+    <div class="row" ng-include="'pages/footer.html'"></div>
+</footer>
+
 

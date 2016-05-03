@@ -1,27 +1,30 @@
 ﻿<div class="row" ng-controller="AuthenticaitonCtrl as authCtrl">
-    <nav class="navbar navbar-default custom-navbar">
-        <div class="container-fluid">
-            <div class="navbar-header" style="height:150%;">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#defaultNavbar1">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">
-                    <img src="../images/logowarden.png" alt="HTML5" style="width:80px;height:80px" />
-                </a>
+    <header>
+        <div class="container">
+            <div class="row">
+                <nav id="header-nav " class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="pull-left" href="/">
+                                <div id="logo-img" alt="Fire Warden"></div>
+                            </a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                        </div>
+                        <div id="collapsable-nav" class="collapse navbar-collapse">
+                            <ul id="nav-list" class="nav navbar-nav navbar-right">
+                                <li class="active"><a href="/"><i class="fa fa-home"></i><b>Home</b></a></li>
+                                <li class="divider"><a ng-click="authCtrl.loginUser()" ng-show="!authCtrl.isUserLoggedIn()"><i class="fa fa-comment"></i><b>Login</b></a></li>
+                                <li class="divider"><a ng-click="authCtrl.logout()" ng-show="authCtrl.isUserLoggedIn()"><i class="fa fa-comment"></i><b>Logout</b></a></li>
+                            </ul><!-- #nav-list -->
+                        </div> <!--.nav collapse-->
+                    </div> <!--.container-fluid-->
+                </nav>
             </div>
-            <div class="navbar-collapse collapse" id="defaultNavbar1">
-                <ul class="nav navbar-nav navbar-right">
-                    <!--style="font-size:150%;">-->
-                    <li class="active"><a href="/"><i class="fa fa-home"></i><b>Home</b></a></li>
-                    <li class="divider"><a href="sites"><i class="fa fa-shield"></i><b>Sites</b></a></li>
-                    <li class="divider"><a href="about"><i class="fa fa-shield"></i><b>About</b></a></li>
-                    <li class="divider"><a href="contact"><i class="fa fa-comment"></i><b>Contact</b></a></li>
-                    <li class="divider"><a ng-click="authCtrl.loginUser()" ng-show="!authCtrl.isUserLoggedIn()"><i class="fa fa-comment"></i><b>Login</b></a></li>
-                    <li class="divider"><a ng-click="authCtrl.logout()" ng-show="authCtrl.isUserLoggedIn()"><i class="fa fa-comment"></i><b>Logout</b></a></li>
-                </ul>
-            </div> <!--.nav collapse-->
-        </div> <!--.container-fluid-->
-    </nav>
+        </div>
+    </header>
 </div>
